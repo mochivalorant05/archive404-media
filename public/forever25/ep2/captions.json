@@ -1,0 +1,961 @@
+[
+{
+"text": "Year",
+"startMs": 280,
+"endMs": 460,
+"timestampMs": 370,
+"confidence": 1
+},
+{
+"text": " 40.",
+"startMs": 640,
+"endMs": 1040,
+"timestampMs": 840,
+"confidence": 1
+},
+{
+"text": " Your",
+"startMs": 1640,
+"endMs": 1720,
+"timestampMs": 1680,
+"confidence": 1
+},
+{
+"text": " daughter",
+"startMs": 1820,
+"endMs": 2100,
+"timestampMs": 1960,
+"confidence": 1
+},
+{
+"text": " is",
+"startMs": 2160,
+"endMs": 2320,
+"timestampMs": 2240,
+"confidence": 1
+},
+{
+"text": " older",
+"startMs": 2400,
+"endMs": 2680,
+"timestampMs": 2540,
+"confidence": 1
+},
+{
+"text": " than",
+"startMs": 2700,
+"endMs": 2860,
+"timestampMs": 2780,
+"confidence": 1
+},
+{
+"text": " you.",
+"startMs": 2920,
+"endMs": 3080,
+"timestampMs": 3000,
+"confidence": 1
+},
+{
+"text": " She",
+"startMs": 5000,
+"endMs": 5100,
+"timestampMs": 5050,
+"confidence": 1
+},
+{
+"text": " was",
+"startMs": 5140,
+"endMs": 5300,
+"timestampMs": 5220,
+"confidence": 1
+},
+{
+"text": " 13",
+"startMs": 5339,
+"endMs": 5900,
+"timestampMs": 5620,
+"confidence": 1
+},
+{
+"text": " the",
+"startMs": 5940,
+"endMs": 6020,
+"timestampMs": 5980,
+"confidence": 1
+},
+{
+"text": " day",
+"startMs": 6060,
+"endMs": 6160,
+"timestampMs": 6110,
+"confidence": 1
+},
+{
+"text": " the",
+"startMs": 6200,
+"endMs": 6300,
+"timestampMs": 6250,
+"confidence": 1
+},
+{
+"text": " truck",
+"startMs": 6340,
+"endMs": 6560,
+"timestampMs": 6450,
+"confidence": 1
+},
+{
+"text": " hit",
+"startMs": 6580,
+"endMs": 6740,
+"timestampMs": 6660,
+"confidence": 1
+},
+{
+"text": " you.",
+"startMs": 6840,
+"endMs": 6960,
+"timestampMs": 6900,
+"confidence": 1
+},
+{
+"text": " Now",
+"startMs": 7520,
+"endMs": 7700,
+"timestampMs": 7610,
+"confidence": 1
+},
+{
+"text": " she's",
+"startMs": 7740,
+"endMs": 7960,
+"timestampMs": 7850,
+"confidence": 1
+},
+{
+"text": " 53,",
+"startMs": 8160,
+"endMs": 8660,
+"timestampMs": 8410,
+"confidence": 1
+},
+{
+"text": " gray,",
+"startMs": 9020,
+"endMs": 9340,
+"timestampMs": 9180,
+"confidence": 1
+},
+{
+"text": " holding",
+"startMs": 9720,
+"endMs": 10000,
+"timestampMs": 9860,
+"confidence": 1
+},
+{
+"text": " your",
+"startMs": 10040,
+"endMs": 10120,
+"timestampMs": 10080,
+"confidence": 1
+},
+{
+"text": " hand,",
+"startMs": 10160,
+"endMs": 10480,
+"timestampMs": 10320,
+"confidence": 1
+},
+{
+"text": " and",
+"startMs": 10980,
+"endMs": 11080,
+"timestampMs": 11030,
+"confidence": 1
+},
+{
+"text": " you",
+"startMs": 11120,
+"endMs": 11260,
+"timestampMs": 11190,
+"confidence": 1
+},
+{
+"text": " still",
+"startMs": 11340,
+"endMs": 11480,
+"timestampMs": 11410,
+"confidence": 1
+},
+{
+"text": " look",
+"startMs": 11520,
+"endMs": 11660,
+"timestampMs": 11590,
+"confidence": 1
+},
+{
+"text": " 25.",
+"startMs": 11800,
+"endMs": 12380,
+"timestampMs": 12090,
+"confidence": 1
+},
+{
+"text": " She",
+"startMs": 12860,
+"endMs": 12980,
+"timestampMs": 12920,
+"confidence": 1
+},
+{
+"text": " still",
+"startMs": 13060,
+"endMs": 13260,
+"timestampMs": 13160,
+"confidence": 1
+},
+{
+"text": " calls",
+"startMs": 13300,
+"endMs": 13520,
+"timestampMs": 13410,
+"confidence": 1
+},
+{
+"text": " you",
+"startMs": 13560,
+"endMs": 13680,
+"timestampMs": 13620,
+"confidence": 1
+},
+{
+"text": " Dad.",
+"startMs": 13720,
+"endMs": 14060,
+"timestampMs": 13890,
+"confidence": 1
+},
+{
+"text": " That's",
+"startMs": 15840,
+"endMs": 16040,
+"timestampMs": 15940,
+"confidence": 1
+},
+{
+"text": " the",
+"startMs": 16080,
+"endMs": 16160,
+"timestampMs": 16120,
+"confidence": 1
+},
+{
+"text": " price.",
+"startMs": 16200,
+"endMs": 16540,
+"timestampMs": 16370,
+"confidence": 1
+},
+{
+"text": " Your",
+"startMs": 16800,
+"endMs": 16900,
+"timestampMs": 16850,
+"confidence": 1
+},
+{
+"text": " passport",
+"startMs": 16960,
+"endMs": 17300,
+"timestampMs": 17130,
+"confidence": 1
+},
+{
+"text": " expires.",
+"startMs": 17340,
+"endMs": 17900,
+"timestampMs": 17620,
+"confidence": 1
+},
+{
+"text": " Banks",
+"startMs": 18160,
+"endMs": 18460,
+"timestampMs": 18310,
+"confidence": 1
+},
+{
+"text": " ask",
+"startMs": 18540,
+"endMs": 18699,
+"timestampMs": 18620,
+"confidence": 1
+},
+{
+"text": " questions.",
+"startMs": 18760,
+"endMs": 19280,
+"timestampMs": 19020,
+"confidence": 1
+},
+{
+"text": " You",
+"startMs": 19520,
+"endMs": 19640,
+"timestampMs": 19580,
+"confidence": 1
+},
+{
+"text": " fake",
+"startMs": 19680,
+"endMs": 19860,
+"timestampMs": 19770,
+"confidence": 1
+},
+{
+"text": " your",
+"startMs": 19900,
+"endMs": 19980,
+"timestampMs": 19940,
+"confidence": 1
+},
+{
+"text": " own",
+"startMs": 20020,
+"endMs": 20160,
+"timestampMs": 20090,
+"confidence": 1
+},
+{
+"text": " death",
+"startMs": 20180,
+"endMs": 20360,
+"timestampMs": 20270,
+"confidence": 1
+},
+{
+"text": " twice.",
+"startMs": 20500,
+"endMs": 20940,
+"timestampMs": 20720,
+"confidence": 1
+},
+{
+"text": " Change",
+"startMs": 21200,
+"endMs": 21440,
+"timestampMs": 21320,
+"confidence": 1
+},
+{
+"text": " your",
+"startMs": 21460,
+"endMs": 21560,
+"timestampMs": 21510,
+"confidence": 1
+},
+{
+"text": " name",
+"startMs": 21580,
+"endMs": 21760,
+"timestampMs": 21670,
+"confidence": 1
+},
+{
+"text": " five",
+"startMs": 21940,
+"endMs": 22160,
+"timestampMs": 22050,
+"confidence": 1
+},
+{
+"text": " times.",
+"startMs": 22260,
+"endMs": 22680,
+"timestampMs": 22470,
+"confidence": 1
+},
+{
+"text": " Nobody",
+"startMs": 23040,
+"endMs": 23400,
+"timestampMs": 23220,
+"confidence": 1
+},
+{
+"text": " can",
+"startMs": 23440,
+"endMs": 23540,
+"timestampMs": 23490,
+"confidence": 1
+},
+{
+"text": " know",
+"startMs": 23580,
+"endMs": 23700,
+"timestampMs": 23640,
+"confidence": 1
+},
+{
+"text": " you're",
+"startMs": 23740,
+"endMs": 23860,
+"timestampMs": 23800,
+"confidence": 1
+},
+{
+"text": " still",
+"startMs": 23920,
+"endMs": 24100,
+"timestampMs": 24010,
+"confidence": 1
+},
+{
+"text": " here.",
+"startMs": 24140,
+"endMs": 24360,
+"timestampMs": 24250,
+"confidence": 1
+},
+{
+"text": " And",
+"startMs": 26810,
+"endMs": 26890,
+"timestampMs": 26850,
+"confidence": 1
+},
+{
+"text": " the",
+"startMs": 26910,
+"endMs": 26990,
+"timestampMs": 26950,
+"confidence": 1
+},
+{
+"text": " stranger,",
+"startMs": 27070,
+"endMs": 27450,
+"timestampMs": 27260,
+"confidence": 1
+},
+{
+"text": " he",
+"startMs": 27910,
+"endMs": 28010,
+"timestampMs": 27960,
+"confidence": 1
+},
+{
+"text": " never",
+"startMs": 28050,
+"endMs": 28230,
+"timestampMs": 28140,
+"confidence": 1
+},
+{
+"text": " left.",
+"startMs": 28330,
+"endMs": 28650,
+"timestampMs": 28490,
+"confidence": 1
+},
+{
+"text": " Every",
+"startMs": 29050,
+"endMs": 29230,
+"timestampMs": 29140,
+"confidence": 1
+},
+{
+"text": " new",
+"startMs": 29310,
+"endMs": 29490,
+"timestampMs": 29400,
+"confidence": 1
+},
+{
+"text": " city,",
+"startMs": 29530,
+"endMs": 29810,
+"timestampMs": 29670,
+"confidence": 1
+},
+{
+"text": " every",
+"startMs": 30090,
+"endMs": 30270,
+"timestampMs": 30180,
+"confidence": 1
+},
+{
+"text": " new",
+"startMs": 30350,
+"endMs": 30530,
+"timestampMs": 30440,
+"confidence": 1
+},
+{
+"text": " face,",
+"startMs": 30590,
+"endMs": 30950,
+"timestampMs": 30770,
+"confidence": 1
+},
+{
+"text": " a",
+"startMs": 31270,
+"endMs": 31330,
+"timestampMs": 31300,
+"confidence": 1
+},
+{
+"text": " silver",
+"startMs": 31410,
+"endMs": 31650,
+"timestampMs": 31530,
+"confidence": 1
+},
+{
+"text": " car",
+"startMs": 31770,
+"endMs": 32010,
+"timestampMs": 31890,
+"confidence": 1
+},
+{
+"text": " outside",
+"startMs": 32070,
+"endMs": 32410,
+"timestampMs": 32240,
+"confidence": 1
+},
+{
+"text": " your",
+"startMs": 32450,
+"endMs": 32510,
+"timestampMs": 32480,
+"confidence": 1
+},
+{
+"text": " window.",
+"startMs": 32570,
+"endMs": 32950,
+"timestampMs": 32760,
+"confidence": 1
+},
+{
+"text": " He",
+"startMs": 33310,
+"endMs": 33390,
+"timestampMs": 33350,
+"confidence": 1
+},
+{
+"text": " isn't",
+"startMs": 33430,
+"endMs": 33650,
+"timestampMs": 33540,
+"confidence": 1
+},
+{
+"text": " hunting",
+"startMs": 33710,
+"endMs": 34050,
+"timestampMs": 33880,
+"confidence": 1
+},
+{
+"text": " you,",
+"startMs": 34110,
+"endMs": 34230,
+"timestampMs": 34170,
+"confidence": 1
+},
+{
+"text": " he's",
+"startMs": 34530,
+"endMs": 34790,
+"timestampMs": 34660,
+"confidence": 1
+},
+{
+"text": " counting.",
+"startMs": 35110,
+"endMs": 35590,
+"timestampMs": 35350,
+"confidence": 1
+},
+{
+"text": " At",
+"startMs": 37840,
+"endMs": 37920,
+"timestampMs": 37880,
+"confidence": 1
+},
+{
+"text": " her",
+"startMs": 37960,
+"endMs": 38040,
+"timestampMs": 38000,
+"confidence": 1
+},
+{
+"text": " funeral,",
+"startMs": 38160,
+"endMs": 38580,
+"timestampMs": 38370,
+"confidence": 1
+},
+{
+"text": " he",
+"startMs": 38839,
+"endMs": 39000,
+"timestampMs": 38920,
+"confidence": 1
+},
+{
+"text": " finally",
+"startMs": 39059,
+"endMs": 39420,
+"timestampMs": 39240,
+"confidence": 1
+},
+{
+"text": " speaks.",
+"startMs": 39540,
+"endMs": 39900,
+"timestampMs": 39720,
+"confidence": 1
+},
+{
+"text": " \"Her",
+"startMs": 40300,
+"endMs": 40420,
+"timestampMs": 40360,
+"confidence": 1
+},
+{
+"text": " time",
+"startMs": 40520,
+"endMs": 40720,
+"timestampMs": 40620,
+"confidence": 1
+},
+{
+"text": " is",
+"startMs": 40760,
+"endMs": 40860,
+"timestampMs": 40810,
+"confidence": 1
+},
+{
+"text": " over.",
+"startMs": 40940,
+"endMs": 41200,
+"timestampMs": 41070,
+"confidence": 1
+},
+{
+"text": " Yours",
+"startMs": 41620,
+"endMs": 41960,
+"timestampMs": 41790,
+"confidence": 1
+},
+{
+"text": " never",
+"startMs": 42020,
+"endMs": 42240,
+"timestampMs": 42130,
+"confidence": 1
+},
+{
+"text": " will",
+"startMs": 42280,
+"endMs": 42440,
+"timestampMs": 42360,
+"confidence": 1
+},
+{
+"text": " be.",
+"startMs": 42480,
+"endMs": 42620,
+"timestampMs": 42550,
+"confidence": 1
+},
+{
+"text": " Do",
+"startMs": 43060,
+"endMs": 43100,
+"timestampMs": 43080,
+"confidence": 1
+},
+{
+"text": " you",
+"startMs": 43120,
+"endMs": 43180,
+"timestampMs": 43150,
+"confidence": 1
+},
+{
+"text": " want",
+"startMs": 43200,
+"endMs": 43320,
+"timestampMs": 43260,
+"confidence": 1
+},
+{
+"text": " to",
+"startMs": 43360,
+"endMs": 43420,
+"timestampMs": 43390,
+"confidence": 1
+},
+{
+"text": " know",
+"startMs": 43460,
+"endMs": 43580,
+"timestampMs": 43520,
+"confidence": 1
+},
+{
+"text": " why?\"",
+"startMs": 43620,
+"endMs": 43880,
+"timestampMs": 43750,
+"confidence": 1
+},
+{
+"text": " He",
+"startMs": 45220,
+"endMs": 45320,
+"timestampMs": 45270,
+"confidence": 1
+},
+{
+"text": " hands",
+"startMs": 45360,
+"endMs": 45580,
+"timestampMs": 45470,
+"confidence": 1
+},
+{
+"text": " you",
+"startMs": 45620,
+"endMs": 45680,
+"timestampMs": 45650,
+"confidence": 1
+},
+{
+"text": " a",
+"startMs": 45720,
+"endMs": 45820,
+"timestampMs": 45770,
+"confidence": 1
+},
+{
+"text": " photo,",
+"startMs": 45840,
+"endMs": 46220,
+"timestampMs": 46030,
+"confidence": 1
+},
+{
+"text": " a",
+"startMs": 46560,
+"endMs": 46580,
+"timestampMs": 46570,
+"confidence": 1
+},
+{
+"text": " little",
+"startMs": 46660,
+"endMs": 46880,
+"timestampMs": 46770,
+"confidence": 1
+},
+{
+"text": " girl,",
+"startMs": 46920,
+"endMs": 47180,
+"timestampMs": 47050,
+"confidence": 1
+},
+{
+"text": " your",
+"startMs": 47600,
+"endMs": 47800,
+"timestampMs": 47700,
+"confidence": 1
+},
+{
+"text": " eyes,",
+"startMs": 47880,
+"endMs": 48220,
+"timestampMs": 48050,
+"confidence": 1
+},
+{
+"text": " your",
+"startMs": 48540,
+"endMs": 48660,
+"timestampMs": 48600,
+"confidence": 1
+},
+{
+"text": " scar,",
+"startMs": 48840,
+"endMs": 49180,
+"timestampMs": 49010,
+"confidence": 1
+},
+{
+"text": " and",
+"startMs": 49480,
+"endMs": 49580,
+"timestampMs": 49530,
+"confidence": 1
+},
+{
+"text": " a",
+"startMs": 49640,
+"endMs": 49760,
+"timestampMs": 49700,
+"confidence": 1
+},
+{
+"text": " date",
+"startMs": 49800,
+"endMs": 50040,
+"timestampMs": 49920,
+"confidence": 1
+},
+{
+"text": " stamped",
+"startMs": 50180,
+"endMs": 50400,
+"timestampMs": 50290,
+"confidence": 1
+},
+{
+"text": " in",
+"startMs": 50440,
+"endMs": 50500,
+"timestampMs": 50470,
+"confidence": 1
+},
+{
+"text": " the",
+"startMs": 50540,
+"endMs": 50600,
+"timestampMs": 50570,
+"confidence": 1
+},
+{
+"text": " corner,",
+"startMs": 50640,
+"endMs": 50960,
+"timestampMs": 50800,
+"confidence": 1
+},
+{
+"text": " 1618.",
+"startMs": 51380,
+"endMs": 52560,
+"timestampMs": 51970,
+"confidence": 1
+},
+{
+"text": " Would",
+"startMs": 55210,
+"endMs": 55330,
+"timestampMs": 55270,
+"confidence": 1
+},
+{
+"text": " you",
+"startMs": 55370,
+"endMs": 55450,
+"timestampMs": 55410,
+"confidence": 1
+},
+{
+"text": " rather",
+"startMs": 55490,
+"endMs": 55790,
+"timestampMs": 55640,
+"confidence": 1
+},
+{
+"text": " outlive",
+"startMs": 55850,
+"endMs": 56290,
+"timestampMs": 56070,
+"confidence": 1
+},
+{
+"text": " everyone",
+"startMs": 56370,
+"endMs": 56750,
+"timestampMs": 56560,
+"confidence": 1
+},
+{
+"text": " you",
+"startMs": 56790,
+"endMs": 56870,
+"timestampMs": 56830,
+"confidence": 1
+},
+{
+"text": " love",
+"startMs": 56930,
+"endMs": 57270,
+"timestampMs": 57100,
+"confidence": 1
+},
+{
+"text": " or",
+"startMs": 57650,
+"endMs": 57710,
+"timestampMs": 57680,
+"confidence": 1
+},
+{
+"text": " never",
+"startMs": 57810,
+"endMs": 58050,
+"timestampMs": 57930,
+"confidence": 1
+},
+{
+"text": " love",
+"startMs": 58090,
+"endMs": 58310,
+"timestampMs": 58200,
+"confidence": 1
+},
+{
+"text": " anyone",
+"startMs": 58370,
+"endMs": 58710,
+"timestampMs": 58540,
+"confidence": 1
+},
+{
+"text": " at",
+"startMs": 58750,
+"endMs": 58830,
+"timestampMs": 58790,
+"confidence": 1
+},
+{
+"text": " all?",
+"startMs": 58910,
+"endMs": 59130,
+"timestampMs": 59020,
+"confidence": 1
+}
+]

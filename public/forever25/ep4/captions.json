@@ -1,0 +1,1059 @@
+[
+{
+"text": "There",
+"startMs": 100,
+"endMs": 220,
+"timestampMs": 160,
+"confidence": 1
+},
+{
+"text": " are",
+"startMs": 240,
+"endMs": 400,
+"timestampMs": 320,
+"confidence": 1
+},
+{
+"text": " twelve",
+"startMs": 460,
+"endMs": 900,
+"timestampMs": 680,
+"confidence": 1
+},
+{
+"text": " Immortals,",
+"startMs": 1000,
+"endMs": 1600,
+"timestampMs": 1300,
+"confidence": 1
+},
+{
+"text": " and",
+"startMs": 2040,
+"endMs": 2120,
+"timestampMs": 2080,
+"confidence": 1
+},
+{
+"text": " eleven",
+"startMs": 2180,
+"endMs": 2540,
+"timestampMs": 2360,
+"confidence": 1
+},
+{
+"text": " of",
+"startMs": 2580,
+"endMs": 2680,
+"timestampMs": 2630,
+"confidence": 1
+},
+{
+"text": " them",
+"startMs": 2720,
+"endMs": 3000,
+"timestampMs": 2860,
+"confidence": 1
+},
+{
+"text": " are",
+"startMs": 3060,
+"endMs": 3140,
+"timestampMs": 3100,
+"confidence": 1
+},
+{
+"text": " afraid",
+"startMs": 3200,
+"endMs": 3580,
+"timestampMs": 3390,
+"confidence": 1
+},
+{
+"text": " of",
+"startMs": 3620,
+"endMs": 3700,
+"timestampMs": 3660,
+"confidence": 1
+},
+{
+"text": " the",
+"startMs": 3740,
+"endMs": 3820,
+"timestampMs": 3780,
+"confidence": 1
+},
+{
+"text": " twelfth.",
+"startMs": 3900,
+"endMs": 4340,
+"timestampMs": 4120,
+"confidence": 1
+},
+{
+"text": " Above,",
+"startMs": 5320,
+"endMs": 5720,
+"timestampMs": 5520,
+"confidence": 1
+},
+{
+"text": " they",
+"startMs": 6100,
+"endMs": 6240,
+"timestampMs": 6170,
+"confidence": 1
+},
+{
+"text": " run",
+"startMs": 6280,
+"endMs": 6460,
+"timestampMs": 6370,
+"confidence": 1
+},
+{
+"text": " the",
+"startMs": 6500,
+"endMs": 6600,
+"timestampMs": 6550,
+"confidence": 1
+},
+{
+"text": " world",
+"startMs": 6640,
+"endMs": 7000,
+"timestampMs": 6820,
+"confidence": 1
+},
+{
+"text": " from",
+"startMs": 7040,
+"endMs": 7160,
+"timestampMs": 7100,
+"confidence": 1
+},
+{
+"text": " the",
+"startMs": 7180,
+"endMs": 7280,
+"timestampMs": 7230,
+"confidence": 1
+},
+{
+"text": " shadows.",
+"startMs": 7320,
+"endMs": 7860,
+"timestampMs": 7590,
+"confidence": 1
+},
+{
+"text": " Banks,",
+"startMs": 8320,
+"endMs": 8720,
+"timestampMs": 8520,
+"confidence": 1
+},
+{
+"text": " elections,",
+"startMs": 9060,
+"endMs": 9680,
+"timestampMs": 9370,
+"confidence": 1
+},
+{
+"text": " wars.",
+"startMs": 10000,
+"endMs": 10480,
+"timestampMs": 10240,
+"confidence": 1
+},
+{
+"text": " Below,",
+"startMs": 11000,
+"endMs": 11420,
+"timestampMs": 11210,
+"confidence": 1
+},
+{
+"text": " the",
+"startMs": 11800,
+"endMs": 11840,
+"timestampMs": 11820,
+"confidence": 1
+},
+{
+"text": " Brief",
+"startMs": 11940,
+"endMs": 12180,
+"timestampMs": 12060,
+"confidence": 1
+},
+{
+"text": " are",
+"startMs": 12220,
+"endMs": 12380,
+"timestampMs": 12300,
+"confidence": 1
+},
+{
+"text": " born,",
+"startMs": 12420,
+"endMs": 12800,
+"timestampMs": 12610,
+"confidence": 1
+},
+{
+"text": " work,",
+"startMs": 13100,
+"endMs": 13360,
+"timestampMs": 13230,
+"confidence": 1
+},
+{
+"text": " and",
+"startMs": 13640,
+"endMs": 13720,
+"timestampMs": 13680,
+"confidence": 1
+},
+{
+"text": " flicker",
+"startMs": 13860,
+"endMs": 14140,
+"timestampMs": 14000,
+"confidence": 1
+},
+{
+"text": " out",
+"startMs": 14240,
+"endMs": 14420,
+"timestampMs": 14330,
+"confidence": 1
+},
+{
+"text": " like",
+"startMs": 14760,
+"endMs": 14940,
+"timestampMs": 14850,
+"confidence": 1
+},
+{
+"text": " candles.",
+"startMs": 15020,
+"endMs": 15540,
+"timestampMs": 15280,
+"confidence": 1
+},
+{
+"text": " Their",
+"startMs": 16640,
+"endMs": 16800,
+"timestampMs": 16720,
+"confidence": 1
+},
+{
+"text": " leader,",
+"startMs": 16840,
+"endMs": 17140,
+"timestampMs": 16990,
+"confidence": 1
+},
+{
+"text": " Ilya,",
+"startMs": 17440,
+"endMs": 17800,
+"timestampMs": 17620,
+"confidence": 1
+},
+{
+"text": " three",
+"startMs": 18100,
+"endMs": 18320,
+"timestampMs": 18210,
+"confidence": 1
+},
+{
+"text": " thousand",
+"startMs": 18460,
+"endMs": 18880,
+"timestampMs": 18670,
+"confidence": 1
+},
+{
+"text": " years",
+"startMs": 18920,
+"endMs": 19160,
+"timestampMs": 19040,
+"confidence": 1
+},
+{
+"text": " old,",
+"startMs": 19260,
+"endMs": 19520,
+"timestampMs": 19390,
+"confidence": 1
+},
+{
+"text": " holds",
+"startMs": 19720,
+"endMs": 19980,
+"timestampMs": 19850,
+"confidence": 1
+},
+{
+"text": " the",
+"startMs": 20020,
+"endMs": 20180,
+"timestampMs": 20100,
+"confidence": 1
+},
+{
+"text": " only",
+"startMs": 20260,
+"endMs": 20560,
+"timestampMs": 20410,
+"confidence": 1
+},
+{
+"text": " thing",
+"startMs": 20620,
+"endMs": 20820,
+"timestampMs": 20720,
+"confidence": 1
+},
+{
+"text": " that",
+"startMs": 20880,
+"endMs": 21000,
+"timestampMs": 20940,
+"confidence": 1
+},
+{
+"text": " scares",
+"startMs": 21060,
+"endMs": 21400,
+"timestampMs": 21230,
+"confidence": 1
+},
+{
+"text": " them.",
+"startMs": 21440,
+"endMs": 21640,
+"timestampMs": 21540,
+"confidence": 1
+},
+{
+"text": " The",
+"startMs": 22040,
+"endMs": 22160,
+"timestampMs": 22100,
+"confidence": 1
+},
+{
+"text": " Brake.",
+"startMs": 22200,
+"endMs": 22520,
+"timestampMs": 22360,
+"confidence": 1
+},
+{
+"text": " One",
+"startMs": 23020,
+"endMs": 23140,
+"timestampMs": 23080,
+"confidence": 1
+},
+{
+"text": " device,",
+"startMs": 23200,
+"endMs": 23640,
+"timestampMs": 23420,
+"confidence": 1
+},
+{
+"text": " one",
+"startMs": 24000,
+"endMs": 24160,
+"timestampMs": 24080,
+"confidence": 1
+},
+{
+"text": " shot.",
+"startMs": 24280,
+"endMs": 24580,
+"timestampMs": 24430,
+"confidence": 1
+},
+{
+"text": " It",
+"startMs": 24960,
+"endMs": 25040,
+"timestampMs": 25000,
+"confidence": 1
+},
+{
+"text": " can",
+"startMs": 25080,
+"endMs": 25220,
+"timestampMs": 25150,
+"confidence": 1
+},
+{
+"text": " switch",
+"startMs": 25300,
+"endMs": 25500,
+"timestampMs": 25400,
+"confidence": 1
+},
+{
+"text": " an",
+"startMs": 25540,
+"endMs": 25600,
+"timestampMs": 25570,
+"confidence": 1
+},
+{
+"text": " Immortal",
+"startMs": 25640,
+"endMs": 25940,
+"timestampMs": 25790,
+"confidence": 1
+},
+{
+"text": " off",
+"startMs": 26100,
+"endMs": 26320,
+"timestampMs": 26210,
+"confidence": 1
+},
+{
+"text": " for",
+"startMs": 26380,
+"endMs": 26460,
+"timestampMs": 26420,
+"confidence": 1
+},
+{
+"text": " good.",
+"startMs": 26620,
+"endMs": 26900,
+"timestampMs": 26760,
+"confidence": 1
+},
+{
+"text": " He",
+"startMs": 27640,
+"endMs": 27740,
+"timestampMs": 27690,
+"confidence": 1
+},
+{
+"text": " gives",
+"startMs": 27780,
+"endMs": 27940,
+"timestampMs": 27860,
+"confidence": 1
+},
+{
+"text": " you",
+"startMs": 27980,
+"endMs": 28040,
+"timestampMs": 28010,
+"confidence": 1
+},
+{
+"text": " a",
+"startMs": 28080,
+"endMs": 28160,
+"timestampMs": 28120,
+"confidence": 1
+},
+{
+"text": " choice.",
+"startMs": 28220,
+"endMs": 28660,
+"timestampMs": 28440,
+"confidence": 1
+},
+{
+"text": " Join",
+"startMs": 29160,
+"endMs": 29360,
+"timestampMs": 29260,
+"confidence": 1
+},
+{
+"text": " the",
+"startMs": 29400,
+"endMs": 29460,
+"timestampMs": 29430,
+"confidence": 1
+},
+{
+"text": " Archive,",
+"startMs": 29540,
+"endMs": 30080,
+"timestampMs": 29810,
+"confidence": 1
+},
+{
+"text": " rule",
+"startMs": 30380,
+"endMs": 30600,
+"timestampMs": 30490,
+"confidence": 1
+},
+{
+"text": " the",
+"startMs": 30640,
+"endMs": 30740,
+"timestampMs": 30690,
+"confidence": 1
+},
+{
+"text": " Brief,",
+"startMs": 30760,
+"endMs": 31120,
+"timestampMs": 30940,
+"confidence": 1
+},
+{
+"text": " forget",
+"startMs": 31420,
+"endMs": 31780,
+"timestampMs": 31600,
+"confidence": 1
+},
+{
+"text": " every",
+"startMs": 31960,
+"endMs": 32200,
+"timestampMs": 32080,
+"confidence": 1
+},
+{
+"text": " fear.",
+"startMs": 32360,
+"endMs": 32700,
+"timestampMs": 32530,
+"confidence": 1
+},
+{
+"text": " Or",
+"startMs": 33120,
+"endMs": 33200,
+"timestampMs": 33160,
+"confidence": 1
+},
+{
+"text": " say",
+"startMs": 33320,
+"endMs": 33440,
+"timestampMs": 33380,
+"confidence": 1
+},
+{
+"text": " no,",
+"startMs": 33559,
+"endMs": 33820,
+"timestampMs": 33689,
+"confidence": 1
+},
+{
+"text": " and",
+"startMs": 34180,
+"endMs": 34280,
+"timestampMs": 34230,
+"confidence": 1
+},
+{
+"text": " be",
+"startMs": 34320,
+"endMs": 34400,
+"timestampMs": 34360,
+"confidence": 1
+},
+{
+"text": " the",
+"startMs": 34440,
+"endMs": 34520,
+"timestampMs": 34480,
+"confidence": 1
+},
+{
+"text": " next",
+"startMs": 34580,
+"endMs": 34820,
+"timestampMs": 34700,
+"confidence": 1
+},
+{
+"text": " one",
+"startMs": 34900,
+"endMs": 35000,
+"timestampMs": 34950,
+"confidence": 1
+},
+{
+"text": " he",
+"startMs": 35040,
+"endMs": 35160,
+"timestampMs": 35100,
+"confidence": 1
+},
+{
+"text": " switches",
+"startMs": 35220,
+"endMs": 35540,
+"timestampMs": 35380,
+"confidence": 1
+},
+{
+"text": " off.",
+"startMs": 35640,
+"endMs": 35900,
+"timestampMs": 35770,
+"confidence": 1
+},
+{
+"text": " You",
+"startMs": 36630,
+"endMs": 36770,
+"timestampMs": 36700,
+"confidence": 1
+},
+{
+"text": " say",
+"startMs": 36810,
+"endMs": 36950,
+"timestampMs": 36880,
+"confidence": 1
+},
+{
+"text": " no.",
+"startMs": 37090,
+"endMs": 37350,
+"timestampMs": 37220,
+"confidence": 1
+},
+{
+"text": " Of",
+"startMs": 37630,
+"endMs": 37730,
+"timestampMs": 37680,
+"confidence": 1
+},
+{
+"text": " course",
+"startMs": 37770,
+"endMs": 37990,
+"timestampMs": 37880,
+"confidence": 1
+},
+{
+"text": " you",
+"startMs": 38050,
+"endMs": 38130,
+"timestampMs": 38090,
+"confidence": 1
+},
+{
+"text": " do.",
+"startMs": 38170,
+"endMs": 38370,
+"timestampMs": 38270,
+"confidence": 1
+},
+{
+"text": " You're",
+"startMs": 38730,
+"endMs": 38850,
+"timestampMs": 38790,
+"confidence": 1
+},
+{
+"text": " the",
+"startMs": 38870,
+"endMs": 39010,
+"timestampMs": 38940,
+"confidence": 1
+},
+{
+"text": " only",
+"startMs": 39090,
+"endMs": 39370,
+"timestampMs": 39230,
+"confidence": 1
+},
+{
+"text": " one",
+"startMs": 39410,
+"endMs": 39590,
+"timestampMs": 39500,
+"confidence": 1
+},
+{
+"text": " who",
+"startMs": 39630,
+"endMs": 39750,
+"timestampMs": 39690,
+"confidence": 1
+},
+{
+"text": " still",
+"startMs": 39850,
+"endMs": 40030,
+"timestampMs": 39940,
+"confidence": 1
+},
+{
+"text": " remembers",
+"startMs": 40070,
+"endMs": 40550,
+"timestampMs": 40310,
+"confidence": 1
+},
+{
+"text": " what",
+"startMs": 40590,
+"endMs": 40670,
+"timestampMs": 40630,
+"confidence": 1
+},
+{
+"text": " it",
+"startMs": 40690,
+"endMs": 40750,
+"timestampMs": 40720,
+"confidence": 1
+},
+{
+"text": " was",
+"startMs": 40770,
+"endMs": 40910,
+"timestampMs": 40840,
+"confidence": 1
+},
+{
+"text": " like",
+"startMs": 40970,
+"endMs": 41190,
+"timestampMs": 41080,
+"confidence": 1
+},
+{
+"text": " to",
+"startMs": 41230,
+"endMs": 41310,
+"timestampMs": 41270,
+"confidence": 1
+},
+{
+"text": " be",
+"startMs": 41350,
+"endMs": 41470,
+"timestampMs": 41410,
+"confidence": 1
+},
+{
+"text": " Brief.",
+"startMs": 41510,
+"endMs": 41890,
+"timestampMs": 41700,
+"confidence": 1
+},
+{
+"text": " So",
+"startMs": 42350,
+"endMs": 42510,
+"timestampMs": 42430,
+"confidence": 1
+},
+{
+"text": " Ilya",
+"startMs": 42590,
+"endMs": 42910,
+"timestampMs": 42750,
+"confidence": 1
+},
+{
+"text": " smiles",
+"startMs": 42970,
+"endMs": 43570,
+"timestampMs": 43270,
+"confidence": 1
+},
+{
+"text": " and",
+"startMs": 43930,
+"endMs": 44110,
+"timestampMs": 44020,
+"confidence": 1
+},
+{
+"text": " aims",
+"startMs": 44190,
+"endMs": 44450,
+"timestampMs": 44320,
+"confidence": 1
+},
+{
+"text": " the",
+"startMs": 44490,
+"endMs": 44590,
+"timestampMs": 44540,
+"confidence": 1
+},
+{
+"text": " Brake",
+"startMs": 44630,
+"endMs": 44870,
+"timestampMs": 44750,
+"confidence": 1
+},
+{
+"text": " at",
+"startMs": 44890,
+"endMs": 45010,
+"timestampMs": 44950,
+"confidence": 1
+},
+{
+"text": " you.",
+"startMs": 45090,
+"endMs": 45270,
+"timestampMs": 45180,
+"confidence": 1
+},
+{
+"text": " He",
+"startMs": 46380,
+"endMs": 46520,
+"timestampMs": 46450,
+"confidence": 1
+},
+{
+"text": " fires.",
+"startMs": 46560,
+"endMs": 47040,
+"timestampMs": 46800,
+"confidence": 1
+},
+{
+"text": " Nothing",
+"startMs": 47580,
+"endMs": 47840,
+"timestampMs": 47710,
+"confidence": 1
+},
+{
+"text": " happens.",
+"startMs": 47880,
+"endMs": 48320,
+"timestampMs": 48100,
+"confidence": 1
+},
+{
+"text": " Ilya",
+"startMs": 48780,
+"endMs": 49080,
+"timestampMs": 48930,
+"confidence": 1
+},
+{
+"text": " goes",
+"startMs": 49100,
+"endMs": 49340,
+"timestampMs": 49220,
+"confidence": 1
+},
+{
+"text": " pale.",
+"startMs": 49400,
+"endMs": 49720,
+"timestampMs": 49560,
+"confidence": 1
+},
+{
+"text": " \"Impossible,\"",
+"startMs": 50120,
+"endMs": 51040,
+"timestampMs": 50580,
+"confidence": 1
+},
+{
+"text": " he",
+"startMs": 51360,
+"endMs": 51480,
+"timestampMs": 51420,
+"confidence": 1
+},
+{
+"text": " whispers.",
+"startMs": 51500,
+"endMs": 51980,
+"timestampMs": 51740,
+"confidence": 1
+},
+{
+"text": " \"Unless",
+"startMs": 52320,
+"endMs": 52760,
+"timestampMs": 52540,
+"confidence": 1
+},
+{
+"text": " you're",
+"startMs": 52820,
+"endMs": 52940,
+"timestampMs": 52880,
+"confidence": 1
+},
+{
+"text": " not",
+"startMs": 53000,
+"endMs": 53240,
+"timestampMs": 53120,
+"confidence": 1
+},
+{
+"text": " one",
+"startMs": 53300,
+"endMs": 53400,
+"timestampMs": 53350,
+"confidence": 1
+},
+{
+"text": " of",
+"startMs": 53440,
+"endMs": 53540,
+"timestampMs": 53490,
+"confidence": 1
+},
+{
+"text": " us.\"",
+"startMs": 53640,
+"endMs": 53940,
+"timestampMs": 53790,
+"confidence": 1
+},
+{
+"text": " Would",
+"startMs": 55450,
+"endMs": 55570,
+"timestampMs": 55510,
+"confidence": 1
+},
+{
+"text": " you",
+"startMs": 55610,
+"endMs": 55730,
+"timestampMs": 55670,
+"confidence": 1
+},
+{
+"text": " join",
+"startMs": 55770,
+"endMs": 55970,
+"timestampMs": 55870,
+"confidence": 1
+},
+{
+"text": " the",
+"startMs": 56010,
+"endMs": 56090,
+"timestampMs": 56050,
+"confidence": 1
+},
+{
+"text": " ones",
+"startMs": 56130,
+"endMs": 56350,
+"timestampMs": 56240,
+"confidence": 1
+},
+{
+"text": " who",
+"startMs": 56370,
+"endMs": 56470,
+"timestampMs": 56420,
+"confidence": 1
+},
+{
+"text": " rule,",
+"startMs": 56590,
+"endMs": 56890,
+"timestampMs": 56740,
+"confidence": 1
+},
+{
+"text": " or",
+"startMs": 57310,
+"endMs": 57370,
+"timestampMs": 57340,
+"confidence": 1
+},
+{
+"text": " stay",
+"startMs": 57530,
+"endMs": 57710,
+"timestampMs": 57620,
+"confidence": 1
+},
+{
+"text": " with",
+"startMs": 57750,
+"endMs": 57850,
+"timestampMs": 57800,
+"confidence": 1
+},
+{
+"text": " the",
+"startMs": 57890,
+"endMs": 57970,
+"timestampMs": 57930,
+"confidence": 1
+},
+{
+"text": " ones",
+"startMs": 58010,
+"endMs": 58250,
+"timestampMs": 58130,
+"confidence": 1
+},
+{
+"text": " who",
+"startMs": 58270,
+"endMs": 58390,
+"timestampMs": 58330,
+"confidence": 1
+},
+{
+"text": " disappear?",
+"startMs": 58430,
+"endMs": 59050,
+"timestampMs": 58740,
+"confidence": 1
+},
+{
+"text": " Join",
+"startMs": 59530,
+"endMs": 59870,
+"timestampMs": 59700,
+"confidence": 1
+},
+{
+"text": " or",
+"startMs": 60290,
+"endMs": 60370,
+"timestampMs": 60330,
+"confidence": 1
+},
+{
+"text": " Brief?",
+"startMs": 60490,
+"endMs": 60890,
+"timestampMs": 60690,
+"confidence": 1
+}
+]

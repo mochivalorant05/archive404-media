@@ -42,7 +42,8 @@ export const Hud: React.FC<{
   /** Second, changing counter under BODY AGE (e.g. LICENSE: 43). */
   counter: string;
   counterBlink?: boolean;
-}> = ({ year, clock, location, counter, counterBlink = true }) => {
+  counterColor?: string;
+}> = ({ year, clock, location, counter, counterBlink = true, counterColor = C.red }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const blinkOn = !counterBlink || Math.floor((frame / fps) * 2) % 2 === 0;
@@ -70,7 +71,7 @@ export const Hud: React.FC<{
         }}
       >
         <Box color={C.amber} style={{ fontFamily: sans,
-          fontWeight: 900, fontSize: 40, letterSpacing: -1 }}>
+          fontWeight: 900, fontSize: year.length > 10 ? 26 : 40, letterSpacing: -1 }}>
           {year}
         </Box>
         <div style={{ textAlign: "center", marginTop: -6 }}>
@@ -99,7 +100,7 @@ export const Hud: React.FC<{
             BODY AGE: 25
           </Box>
           <Box
-            color={C.red}
+            color={counterColor}
             style={{
               fontFamily: mono,
               fontWeight: 700,
@@ -267,7 +268,8 @@ export const Hook: React.FC<{ line1: string; line2: string; line2At: number }> =
           textAlign: "center",
           fontFamily: sans,
           fontWeight: 900,
-          fontSize: 108,
+          // shrink very long single words (e.g. "5,000,000,000.") so they fit the 1080 px frame
+          fontSize: Math.min(108, Math.floor(1300 / Math.max(10, ...[line1, line2].flatMap((l) => l.split(" ")).map((w) => w.length)))),
           lineHeight: 1.05,
           color: "white",
           WebkitTextStroke: "12px #05070f",
@@ -290,7 +292,12 @@ export const Flash: React.FC<{ color?: string; frames?: number }> = ({ color = "
 };
 
 /** Final question card: black screen + two answer buttons. Use inside a <Sequence>. */
-export const EndCard: React.FC<{ question: string; a: string; b: string }> = ({ question, a, b }) => {
+export const EndCard: React.FC<{ question: string; a?: string; b?: string; prompt?: string }> = ({
+  question,
+  a,
+  b,
+  prompt,
+}) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const q = spring({ frame, fps, config: { damping: 16 } });
@@ -300,15 +307,16 @@ export const EndCard: React.FC<{ question: string; a: string; b: string }> = ({ 
     <div
       style={{
         transform: `scale(${btn(delay) * pulse})`,
-        width: 380,
-        padding: "34px 0",
+        width: 420,
+        padding: label.length > 6 ? "46px 0" : "34px 0",
         textAlign: "center",
         borderRadius: 28,
         border: `6px solid ${color}`,
         color,
         fontFamily: sans,
           fontWeight: 900,
-        fontSize: 96,
+        fontSize: label.length > 7 ? 58 : label.length > 5 ? 72 : 96,
+        whiteSpace: "nowrap",
         background: `${color}1f`,
         boxShadow: `0 0 40px ${color}66`,
       }}
@@ -335,8 +343,8 @@ export const EndCard: React.FC<{ question: string; a: string; b: string }> = ({ 
         {question}
       </div>
       <div style={{ display: "flex", gap: 60 }}>
-        {button(a, C.cyan, 12)}
-        {button(b, C.red, 18)}
+        {a ? button(a, C.cyan, 12) : null}
+        {b ? button(b, C.red, 18) : null}
       </div>
       <div
         style={{
@@ -349,7 +357,7 @@ export const EndCard: React.FC<{ question: string; a: string; b: string }> = ({ 
           letterSpacing: 2,
         }}
       >
-        COMMENT {a} OR {b}
+        {prompt ?? `COMMENT ${a} OR ${b}`}
       </div>
     </AbsoluteFill>
   );

@@ -2,13 +2,20 @@ import React, { useLayoutEffect, useMemo } from "react";
 import * as THREE from "three";
 import { useThree } from "@react-three/fiber";
 import { ThreeCanvas } from "@remotion/three";
-import { useVideoConfig } from "remotion";
+import { useCurrentFrame, useVideoConfig } from "remotion";
 
 type V3 = [number, number, number];
 
 /** A full-frame ThreeCanvas for one shot. Each shot mounts its own canvas inside a <Sequence>. */
-export const Shot: React.FC<{ children: React.ReactNode; bg?: string }> = ({ children, bg = "#070b1a" }) => {
-  const { width, height } = useVideoConfig();
+export const Shot: React.FC<{ children: React.ReactNode; bg?: string; w?: number; h?: number }> = ({
+  children,
+  bg = "#070b1a",
+  w,
+  h,
+}) => {
+  const cfg = useVideoConfig();
+  const width = w ?? cfg.width;
+  const height = h ?? cfg.height;
   return (
     <ThreeCanvas width={width} height={height} camera={{ fov: 40, position: [0, 2, 8], near: 0.05, far: 400 }}>
       <color attach="background" args={[bg]} />
@@ -98,6 +105,12 @@ export type PersonLook = {
   /** Older: hunched + glasses. */
   old?: boolean;
   coat?: string;
+  /** Long hair falling to the shoulders (Mara, your daughter). */
+  longHair?: string;
+  /** A dress/skirt covering the legs. */
+  dress?: string;
+  /** Simple eyes — only for characters that are not "you" (the bible keeps you faceless). */
+  eyes?: boolean;
 };
 
 /**
@@ -134,6 +147,9 @@ export const Person: React.FC<
   old,
   coat,
   torn,
+  longHair,
+  dress,
+  eyes,
 }) => {
   const sit = pose === "sit";
   const crouch = pose === "crouch" ? amount : 0;
@@ -164,6 +180,12 @@ export const Person: React.FC<
           </group>
         </group>
       ))}
+      {dress ? (
+        <mesh position={[0, -0.32, 0]}>
+          <cylinderGeometry args={[0.2, sit ? 0.3 : 0.36, 0.72, 14]} />
+          {mat(dress)}
+        </mesh>
+      ) : null}
       {/* torso */}
       <group rotation={[hunch + crouch * 0.4, 0, 0]}>
         <mesh position={[0, 0.33, 0]}>
@@ -229,6 +251,20 @@ export const Person: React.FC<
               {mat(hair, 0.9)}
             </mesh>
           ) : null}
+          {longHair ? (
+            <mesh position={[0, 0.1, -0.06]}>
+              <boxGeometry args={[0.3, 0.42, 0.14]} />
+              {mat(longHair, 0.9)}
+            </mesh>
+          ) : null}
+          {eyes
+            ? [-0.055, 0.055].map((x) => (
+                <mesh key={`e${x}`} position={[x, 0.22, 0.135]}>
+                  <sphereGeometry args={[0.022, 8, 8]} />
+                  <meshStandardMaterial color="#141018" roughness={0.3} />
+                </mesh>
+              ))
+            : null}
           {old
             ? [-0.06, 0.06].map((x) => (
                 <mesh key={x} position={[x, 0.21, 0.14]}>
@@ -331,4 +367,142 @@ export const Glow: React.FC<{ position: V3; color: string; size: number; opacity
       />
     </sprite>
   );
+};
+
+/* ---------------------------------------------------------------- props */
+
+/** Falling rain streaks in a box around the camera target. */
+export const Rain: React.FC<{ t: number; count?: number; area?: number; color?: string }> = ({
+  t,
+  count = 260,
+  area = 14,
+  color = "#9fb3d1",
+}) => (
+  <group>
+    {Array.from({ length: count }).map((_, i) => {
+      const x = (rnd(i * 3.1) - 0.5) * area;
+      const z = (rnd(i * 7.7) - 0.5) * area;
+      const y = 8 - ((t * 14 + rnd(i * 1.3) * 8) % 8);
+      return (
+        <mesh key={i} position={[x, y, z]}>
+          <boxGeometry args={[0.012, 0.45, 0.012]} />
+          <meshBasicMaterial color={color} transparent opacity={0.45} />
+        </mesh>
+      );
+    })}
+  </group>
+);
+
+/** Slow drifting snow flakes. */
+export const Snow: React.FC<{ t: number; count?: number; area?: number; wind?: number }> = ({
+  t,
+  count = 300,
+  area = 16,
+  wind = 0.6,
+}) => (
+  <group>
+    {Array.from({ length: count }).map((_, i) => {
+      const y = 7 - ((t * (0.8 + rnd(i) * 0.6) + rnd(i * 2.2) * 7) % 7);
+      const x = ((rnd(i * 5.3) - 0.5) * area + t * wind + Math.sin(t + i) * 0.2) % (area / 2);
+      const z = (rnd(i * 9.1) - 0.5) * area;
+      return (
+        <mesh key={i} position={[x, y, z]}>
+          <sphereGeometry args={[0.025 + rnd(i * 4.4) * 0.02, 5, 4]} />
+          <meshBasicMaterial color="#f2f6ff" />
+        </mesh>
+      );
+    })}
+  </group>
+);
+
+/** A candle; `lit` 0..1 fades the flame. */
+export const Candle: React.FC<{ position: [number, number, number]; lit: number; h?: number; flick?: number }> = ({
+  position,
+  lit,
+  h = 0.3,
+  flick = 0,
+}) => (
+  <group position={position}>
+    <mesh position={[0, h / 2, 0]}>
+      <cylinderGeometry args={[0.045, 0.05, h, 12]} />
+      <meshStandardMaterial color="#efe6d2" roughness={0.6} />
+    </mesh>
+    {lit > 0.01 ? (
+      <>
+        <mesh position={[0, h + 0.05, 0]} scale={[1, 1 + Math.sin(flick * 13) * 0.15, 1]}>
+          <coneGeometry args={[0.025, 0.09, 8]} />
+          <meshBasicMaterial color="#ffd27a" transparent opacity={lit} toneMapped={false} />
+        </mesh>
+        <Glow position={[0, h + 0.06, 0]} color="#ffb35a" size={0.35 * lit} opacity={lit} />
+      </>
+    ) : (
+      <mesh position={[0, h + 0.04, 0]}>
+        <cylinderGeometry args={[0.004, 0.004, 0.05, 4]} />
+        <meshBasicMaterial color="#222" />
+      </mesh>
+    )}
+  </group>
+);
+
+/** Open umbrella held overhead. */
+export const Umbrella: React.FC<{ position: [number, number, number]; color: string; tilt?: number }> = ({
+  position,
+  color,
+  tilt = 0,
+}) => (
+  <group position={position} rotation={[tilt, 0, tilt * 0.5]}>
+    <mesh position={[0, 0.45, 0]}>
+      <coneGeometry args={[0.62, 0.32, 10, 1, true]} />
+      <meshStandardMaterial color={color} side={THREE.DoubleSide} roughness={0.5} />
+    </mesh>
+    <mesh position={[0, 0, 0]}>
+      <cylinderGeometry args={[0.012, 0.012, 0.9, 6]} />
+      <meshStandardMaterial color="#222" />
+    </mesh>
+  </group>
+);
+
+/** Silver sedan (Ilya's car). */
+export const SilverCar: React.FC<{ position: [number, number, number]; rotation?: number; lights?: number }> = ({
+  position,
+  rotation = 0,
+  lights = 0,
+}) => (
+  <group position={position} rotation={[0, rotation, 0]}>
+    <mesh position={[0, 0.45, 0]}>
+      <boxGeometry args={[1.8, 0.5, 4.2]} />
+      <meshStandardMaterial color="#d3d8e0" metalness={0.35} roughness={0.3} />
+    </mesh>
+    <mesh position={[0, 0.88, -0.2]}>
+      <boxGeometry args={[1.6, 0.42, 2.2]} />
+      <meshStandardMaterial color="#0d1118" metalness={0.6} roughness={0.15} />
+    </mesh>
+    {[-1.4, 1.4].map((z) =>
+      [-0.85, 0.85].map((x) => (
+        <mesh key={`${x}${z}`} position={[x, 0.3, z]} rotation={[0, 0, Math.PI / 2]}>
+          <cylinderGeometry args={[0.32, 0.32, 0.22, 14]} />
+          <meshStandardMaterial color="#0a0a0a" />
+        </mesh>
+      )),
+    )}
+    {lights > 0
+      ? [-0.6, 0.6].map((x) => <Glow key={x} position={[x, 0.5, 2.15]} color="#fff2cc" size={0.9 * lights} />)
+      : null}
+    {[-0.6, 0.6].map((x) => (
+      <mesh key={`r${x}`} position={[x, 0.55, -2.11]}>
+        <planeGeometry args={[0.35, 0.1]} />
+        <meshBasicMaterial color="#ff2a3a" toneMapped={false} side={THREE.DoubleSide} />
+      </mesh>
+    ))}
+  </group>
+);
+
+/** Deterministic hash-based random in [0,1). */
+export const rnd = (n: number) => Math.abs(Math.sin(n * 12.9898 + 78.233) * 43758.5453) % 1;
+
+/** Absolute episode time (s) inside a shot mounted at `from` seconds. */
+export const useT = (from: number) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  return { t: from + frame / fps, local: frame / fps, frame };
 };
