@@ -805,7 +805,7 @@ const cfg: EpisodeConfig = {
   },
   sfx: [
     // the monitor sits under the softest lines ("She still calls you Dad"), so -6 dB
-    { file: "sfx_monitor.mp3", at: 0, dur: 4.6, vol: 0.5 },
+    { file: "sfx_monitor.mp3", at: 0, dur: 4.6, vol: 0.25 },
     { file: "sfx_monitor.mp3", at: 12.6, trimBefore: 4.4, dur: 2.8, vol: 0.5 },
     { file: "sfx_rain.mp3", at: 37.6, dur: 7.4, loop: true },
     ...[11.8, 17.34, 20.5, 35.1, 51.38].map((s) => ({ file: "sfx_hit.mp3", at: s - 0.3, dur: 2 })),
