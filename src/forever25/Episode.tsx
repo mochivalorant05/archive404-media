@@ -98,7 +98,8 @@ export const Episode: React.FC<{ cfg: EpisodeConfig }> = ({ cfg }) => {
       </Sequence>
 
       <Audio src={ep("voice.mp3")} />
-      <Audio src={ep("drone.mp3")} />
+      {/* dark drone bed: kept very low (-12 dB, ≈23 dB under the voice) so it never competes */}
+      <Audio src={ep("drone.mp3")} volume={0.25} />
       {cfg.sfx.map((s, i) => (
         <Sequence
           key={i}
