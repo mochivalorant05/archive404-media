@@ -22,9 +22,17 @@ const SHOT_COMPONENTS: Record<Exclude<ShotName, "end">, React.FC<{ from: number 
   box: BoxShot,
 };
 
-// Mix: narrator +25 %, every effect / ambience at 50 % (amplitude) so the voice sits on top.
-const VOICE_GAIN = 1.25;
-const SFX_GAIN = 0.5;
+// ---- Mix -------------------------------------------------------------------------------
+// Rule: the narrator is ALWAYS on top. Levels were measured with EBU R128 (momentary loudness):
+//   voice.mp3 loud speech ≈ -23 LUFS · sfx peaks: truck -1.7, hit -3.5, box -3.6 · drone -28.
+// Each effect's loudest moment is set ~5 dB under the narrator's loud speech (≈ 75 vs 50),
+// the drone bed ~12 dB under. Change the dB values here to rebalance.
+const dB = (x: number) => Math.pow(10, x / 20);
+const VOICE_VOL = 1;
+const TRUCK_VOL = dB(-26); // peak -1.7 → ≈ -28
+const HIT_VOL = dB(-24.5); // peak -3.5 → ≈ -28
+const BOX_VOL = dB(-24.5); // peak -3.6 → ≈ -28
+const DRONE_VOL = dB(-7); // -28 → ≈ -35
 
 const f = (s: number, fps: number) => Math.round(s * fps);
 const ep = (p: string) => staticFile(`forever25/ep1/${p}`);
@@ -128,17 +136,17 @@ export const Forever25Ep1: React.FC = () => {
       </Sequence>
 
       {/* ---------- audio ---------- */}
-      <Audio src={ep("voice.mp3")} volume={VOICE_GAIN} />
-      <Audio src={ep("drone.mp3")} volume={0.55 * SFX_GAIN} />
+      <Audio src={ep("voice.mp3")} volume={VOICE_VOL} />
+      <Audio src={ep("drone.mp3")} volume={DRONE_VOL} />
       {/* horn + crash: the crash in the file is at 3.0 s, so start 0.7 s in to hit the 2.3 s impact */}
-      <Audio src={ep("sfx_truck.mp3")} trimBefore={f(0.7, fps)} volume={0.55 * SFX_GAIN} />
+      <Audio src={ep("sfx_truck.mp3")} trimBefore={f(0.7, fps)} volume={TRUCK_VOL} />
       {[BEATS.mismatchStamp, BEATS.likeAGod, BEATS.eighteenYears, BEATS.notOneLine, BEATS.watching + 0.9].map((s) => (
         <Sequence key={s} name="sfx hit" from={f(s - 0.3, fps)} durationInFrames={f(2, fps)}>
-          <Audio src={ep("sfx_hit.mp3")} volume={0.35 * SFX_GAIN} />
+          <Audio src={ep("sfx_hit.mp3")} volume={HIT_VOL} />
         </Sequence>
       ))}
       <Sequence name="sfx box" from={f(BEATS.others - 0.2, fps)} durationInFrames={f(2.1, fps)}>
-        <Audio src={ep("sfx_box.mp3")} volume={0.9 * SFX_GAIN} />
+        <Audio src={ep("sfx_box.mp3")} volume={BOX_VOL} />
       </Sequence>
     </AbsoluteFill>
   );
