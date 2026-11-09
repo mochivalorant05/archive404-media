@@ -1,0 +1,17 @@
+[
+  { "text": "Day", "startMs": 2600, "endMs": 2900, "timestampMs": 2750, "confidence": 1 },
+  { "text": " one.", "startMs": 2900, "endMs": 3500, "timestampMs": 3200, "confidence": 1 },
+  { "text": " I", "startMs": 4000, "endMs": 4200, "timestampMs": 4100, "confidence": 1 },
+  { "text": " woke", "startMs": 4200, "endMs": 4500, "timestampMs": 4350, "confidence": 1 },
+  { "text": " up", "startMs": 4500, "endMs": 4800, "timestampMs": 4650, "confidence": 1 },
+  { "text": " and", "startMs": 4800, "endMs": 5000, "timestampMs": 4900, "confidence": 1 },
+  { "text": " everyone", "startMs": 5000, "endMs": 5600, "timestampMs": 5300, "confidence": 1 },
+  { "text": " was", "startMs": 5600, "endMs": 5850, "timestampMs": 5725, "confidence": 1 },
+  { "text": " gone.", "startMs": 5850, "endMs": 6600, "timestampMs": 6225, "confidence": 1 },
+  { "text": " No", "startMs": 7400, "endMs": 7700, "timestampMs": 7550, "confidence": 1 },
+  { "text": " cars.", "startMs": 7700, "endMs": 8300, "timestampMs": 8000, "confidence": 1 },
+  { "text": " No", "startMs": 8500, "endMs": 8800, "timestampMs": 8650, "confidence": 1 },
+  { "text": " voices.", "startMs": 8800, "endMs": 9500, "timestampMs": 9150, "confidence": 1 },
+  { "text": " Just", "startMs": 10000, "endMs": 10300, "timestampMs": 10150, "confidence": 1 },
+  { "text": " me.", "startMs": 10300, "endMs": 11300, "timestampMs": 10800, "confidence": 1 }
+]
