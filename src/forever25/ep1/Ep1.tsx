@@ -30,7 +30,7 @@ const SHOT_COMPONENTS: Record<Exclude<ShotName, "end">, React.FC<{ from: number 
 const dB = (x: number) => Math.pow(10, x / 20);
 const VOICE_VOL = 1;
 const TRUCK_VOL = dB(-26); // peak -1.7 → ≈ -28
-const HIT_VOL = dB(-24.5); // peak -3.5 → ≈ -28
+const HIT_VOL = dB(-28.5); // peak -3.5 → ≈ -32 (under the softest lines, e.g. "like a god")
 const BOX_VOL = dB(-24.5); // peak -3.6 → ≈ -28
 const DRONE_VOL = dB(-7); // -28 → ≈ -35
 
