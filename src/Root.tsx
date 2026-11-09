@@ -1,6 +1,7 @@
 import React from "react";
 import { Composition } from "remotion";
 import { Short3D, type Short3DProps } from "./Short3D";
+import { Forever25Ep1, EP1_FRAMES } from "./forever25/ep1/Ep1";
 
 export const FPS = 30;
 
@@ -29,6 +30,14 @@ export const RemotionRoot: React.FC = () => {
         calculateMetadata={({ props }) => ({
           durationInFrames: Math.round(props.durationInSeconds * FPS),
         })}
+      />
+      <Composition
+        id="Forever25-Ep1"
+        component={Forever25Ep1}
+        width={1080}
+        height={1920}
+        fps={FPS}
+        durationInFrames={EP1_FRAMES(FPS)}
       />
     </>
   );

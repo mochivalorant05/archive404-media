@@ -46,6 +46,10 @@ public/
   captions/*.json           # caption files
   audio/                    # voice-overs and music
 series1/                    # finished videos
+src/forever25/              # FOREVER 25 series (HUD, mascot, stamps, end card, 3D kit)
+  ep1/                      # Episode 1 "A Truck Hit You": timeline, shots, composition
+public/forever25/ep1/       # voice-over, captions, SFX for episode 1
+scripts/                    # retime_voice.py, stills.mjs
 ```
 
 ## Making a new 3D scene
@@ -71,3 +75,25 @@ Note the leading space on every word after the first. Words close together are g
 word being spoken is highlighted (`COMBINE_WITHIN_MS` / `HIGHLIGHT` in `Captions.tsx`).
 To get word timings from a voice-over automatically, transcribe it with Whisper
 (`@remotion/install-whisper-cpp` → `toCaptions()`), or convert an `.srt` with `parseSrt()` from `@remotion/captions`.
+
+## FOREVER 25
+
+Series bible and scripts live in the doc "Miniserie: ¿Y si nunca envejecieses?". Each episode is a
+Remotion composition (`Forever25-Ep1`, ...) built from:
+
+- `src/forever25/hud.tsx` - series look: HUD (left `YEAR`, centre clock + location, right `BODY AGE: 25`
+  + the episode's blinking counter), the 404 mascot, slam-in stamps, hook title, flashes, the end card with two buttons, film grain.
+- `src/forever25/three-kit.tsx` - 3D building blocks: `Shot` (one canvas per shot), `Cam`, the faceless `Person`
+  (you are always seen from behind, per the bible), buildings, glows, canvas textures.
+- `src/forever25/ep1/timeline.ts` - every shot and beat in seconds. Change timings here.
+
+```bash
+npx remotion render Forever25-Ep1 out/forever25_ep1.mp4
+node scripts/stills.mjs Forever25-Ep1 out/stills 0.5 1.5 12.6 24.6   # quick check frames (seconds)
+```
+
+### Voice-over workflow (per episode)
+1. Generate the narration with ElevenLabs (voice **Aaden**, model v4) → `voice_raw.mp3`.
+2. Transcribe it with Scribe to get word timestamps → `words_raw.json`.
+3. Re-time the beats onto the episode timeline and build the captions:
+   `python3 scripts/retime_voice.py words_raw.json voice_raw.mp3 voice.mp3 captions.json 0:0 4.74:5.0 ...`

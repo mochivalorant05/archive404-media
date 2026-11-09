@@ -15,7 +15,19 @@ import { createTikTokStyleCaptions, type Caption, type TikTokPage } from "@remot
 const COMBINE_WITHIN_MS = 1200;
 const HIGHLIGHT = "#ffd400";
 
-export const Captions: React.FC<{ src: string }> = ({ src }) => {
+export type CaptionStyle = {
+  /** Distance from the bottom of the frame to the caption block (px). */
+  bottom?: number;
+  fontSize?: number;
+  fontFamily?: string;
+  /** Black outline around letters (series default: off, soft shadow instead). */
+  stroke?: boolean;
+  highlight?: string;
+  /** Words closer together than this are shown on the same "page". */
+  combineMs?: number;
+};
+
+export const Captions: React.FC<{ src: string; style?: CaptionStyle }> = ({ src, style }) => {
   const [captions, setCaptions] = useState<Caption[] | null>(null);
   const [handle] = useState(() => delayRender(`Loading captions ${src}`));
   const { fps } = useVideoConfig();
@@ -37,9 +49,9 @@ export const Captions: React.FC<{ src: string }> = ({ src }) => {
     if (!captions) return [];
     return createTikTokStyleCaptions({
       captions,
-      combineTokensWithinMilliseconds: COMBINE_WITHIN_MS,
+      combineTokensWithinMilliseconds: style?.combineMs ?? COMBINE_WITHIN_MS,
     }).pages;
-  }, [captions]);
+  }, [captions, style?.combineMs]);
 
   return (
     <AbsoluteFill>
@@ -50,7 +62,7 @@ export const Captions: React.FC<{ src: string }> = ({ src }) => {
         const duration = Math.max(1, Math.round((endMs / 1000) * fps) - from);
         return (
           <Sequence key={i} from={from} durationInFrames={duration} layout="none">
-            <CaptionPage page={page} />
+            <CaptionPage page={page} style={style ?? {}} />
           </Sequence>
         );
       })}
@@ -58,7 +70,14 @@ export const Captions: React.FC<{ src: string }> = ({ src }) => {
   );
 };
 
-const CaptionPage: React.FC<{ page: TikTokPage }> = ({ page }) => {
+const CaptionPage: React.FC<{ page: TikTokPage; style: CaptionStyle }> = ({ page, style }) => {
+  const {
+    bottom = 520,
+    fontSize = 84,
+    fontFamily = "'Arial Black', 'Helvetica Neue', Arial, sans-serif",
+    stroke = true,
+    highlight = HIGHLIGHT,
+  } = style;
   const frame = useCurrentFrame(); // relative to the Sequence start
   const { fps } = useVideoConfig();
   const absoluteMs = page.startMs + (frame / fps) * 1000;
@@ -67,28 +86,30 @@ const CaptionPage: React.FC<{ page: TikTokPage }> = ({ page }) => {
   const scale = interpolate(pop, [0, 1], [0.85, 1]);
 
   return (
-    <AbsoluteFill style={{ justifyContent: "flex-end", alignItems: "center", paddingBottom: 520 }}>
+    <AbsoluteFill style={{ justifyContent: "flex-end", alignItems: "center", paddingBottom: bottom }}>
       <div
         style={{
           transform: `scale(${scale})`,
           maxWidth: 920,
           textAlign: "center",
-          fontFamily: "'Arial Black', 'Helvetica Neue', Arial, sans-serif",
+          fontFamily,
           fontWeight: 900,
-          fontSize: 84,
+          fontSize,
           lineHeight: 1.15,
           textTransform: "uppercase",
           color: "white",
-          WebkitTextStroke: "10px black",
+          WebkitTextStroke: stroke ? "10px black" : undefined,
           paintOrder: "stroke",
-          textShadow: "0 8px 24px rgba(0,0,0,0.6)",
+          textShadow: stroke
+            ? "0 8px 24px rgba(0,0,0,0.6)"
+            : "0 4px 0 rgba(0,0,0,0.85), 0 0 22px rgba(0,0,0,0.9), 0 0 6px rgba(0,0,0,0.9)",
           whiteSpace: "pre-wrap",
         }}
       >
         {page.tokens.map((t) => {
           const active = t.fromMs <= absoluteMs && t.toMs > absoluteMs;
           return (
-            <span key={t.fromMs} style={{ color: active ? HIGHLIGHT : "white" }}>
+            <span key={t.fromMs} style={{ color: active ? highlight : "white" }}>
               {t.text}
             </span>
           );
