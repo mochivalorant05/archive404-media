@@ -1,0 +1,4 @@
+RENDER DE "ALCATRAZ 1962 - WOULD YOU HAVE TRIED?" (ARCHIVE404 FILES) EN TU PC
+1. Doble clic en RENDER_ALCATRAZ.bat (usa tu GPU; abre una ventana de navegador: no la cierres).
+2. Al terminar: alcatraz.mp4 (1080x1920, 60 fps, 53,6 s, voz Aiden + musica/SFX + outro de Null) y portada.jpg en esta carpeta.
+3. Si se corta, vuelve a ejecutarlo: sigue donde lo dejo. Progreso en render_log.txt.
