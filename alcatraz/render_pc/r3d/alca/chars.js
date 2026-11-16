@@ -23,7 +23,7 @@ function seg(ctx, pts, w) {
 }
 
 // ---------- faces & hats (same visual language as v1, smoother curves) ----------
-function face(ctx, cx, cy, r, e, t) {
+export function face(ctx, cx, cy, r, e, t) {
   ctx.fillStyle = INK; ctx.strokeStyle = INK; ctx.lineCap = 'round';
   const eyeY = cy - r * 0.02, ex = r * 0.32;
   const blink = (t * 0.7) % 4 < 0.08;

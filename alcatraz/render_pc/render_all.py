@@ -6,7 +6,7 @@ import asyncio, base64, json, os, sys, time, threading, subprocess, functools, h
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 R3D = os.path.join(ROOT, "r3d"); DATA = os.path.join(ROOT, "data")
-FR = os.path.join(DATA, "frames60"); DUR = 53.6; FPS = 60; SUB = 4; N = int(DUR * FPS); PORT = 8773; OUTRO = 51.6; COVER_T = 52.4
+FR = os.path.join(DATA, "frames_v2"); DUR = 53.6; FPS = 60; SUB = 4; N = int(DUR * FPS); PORT = 8773; OUTRO = 51.6; COVER_T = 52.4
 
 def ensure_modules():
     nm = os.path.join(R3D, "node_modules")
@@ -50,8 +50,8 @@ async def render(frames, outdir, force=False, cover=True):
                 el = time.time() - t0; eta = el / done * (len(todo) - done)
                 if done % 300 == 0: await asyncio.sleep(2)
                 print(f"frame {f+1}/{N}  ({el/done:.2f} s/frame, faltan ~{eta/60:.1f} min)", flush=True)
-        if cover and not os.path.exists(os.path.join(DATA, "cover_raw60.png")):
-            await pg.evaluate("window.NOTEXT=true"); await pg.evaluate(f"renderFrame({COVER_T})"); d = await pg.evaluate("grab()"); open(os.path.join(DATA, "cover_raw60.png"), "wb").write(base64.b64decode(d.split(",")[1])); await pg.evaluate("window.NOTEXT=false")
+        if cover and not os.path.exists(os.path.join(DATA, "cover_raw_v2.png")):
+            await pg.evaluate("window.NOTEXT=true"); await pg.evaluate(f"renderFrame({COVER_T})"); d = await pg.evaluate("grab()"); open(os.path.join(DATA, "cover_raw_v2.png"), "wb").write(base64.b64decode(d.split(",")[1])); await pg.evaluate("window.NOTEXT=false")
         await b.close()
 
 def assemble():
@@ -60,18 +60,18 @@ def assemble():
     n = len([x for x in os.listdir(FR) if x.endswith(".png")])
     if n < N: sys.exit(f"Faltan frames ({n}/{N}). Vuelve a ejecutar para completar.")
     os.chdir(DATA)
-    if not os.path.exists("portada60"):
+    if not os.path.exists("portada_v2"):
         try:
-            subprocess.run([sys.executable, "make_cover.py", "cover_raw60.png", "portada.png", "ALCATRAZ · 1962", "WOULD YOU", "ESCAPE", "THE ROCK?"], check=True)
-            from PIL import Image; Image.open("portada.png").convert("RGB").save(os.path.join(ROOT, "portada.jpg"), quality=93); open("portada60", "w").close()
+            subprocess.run([sys.executable, "make_cover.py", "cover_raw_v2.png", "portada.png", "ALCATRAZ · 1962", "WOULD YOU", "ESCAPE", "THE ROCK?"], check=True)
+            from PIL import Image; Image.open("portada.png").convert("RGB").save(os.path.join(ROOT, "portada.jpg"), quality=93); open("portada_v2", "w").close()
         except Exception as e: print("Portada no generada:", e)
-    if not os.path.exists("outro_done60"):
-        subprocess.run([sys.executable, "null_outro.py", str(OUTRO), str(FPS)], check=True); open("outro_done60", "w").close()
+    if not os.path.exists("outro_done_v2"):
+        subprocess.run([sys.executable, "null_outro.py", str(OUTRO), str(FPS)], check=True); open("outro_done_v2", "w").close()
     fc = (f"[1:a]loudnorm=I=-15:TP=-1.5:LRA=11,aresample=44100,apad=whole_dur={DUR},asplit=2[v1][v2];"
           "[2:a]volume=0.9[b];[b][v1]sidechaincompress=threshold=0.05:ratio=6:attack=20:release=300[bd];"
           "[bd][v2]amix=inputs=2:duration=longest:normalize=0,alimiter=limit=0.95[a]")
     out = os.path.join(ROOT, "alcatraz.mp4"); tmp = os.path.join(ROOT, "alcatraz_tmp.mp4")
-    subprocess.run([ff, "-y", "-loglevel", "error", "-framerate", str(FPS), "-i", "frames60/f%05d.png", "-i", "voice.mp3", "-i", "bed.wav",
+    subprocess.run([ff, "-y", "-loglevel", "error", "-framerate", str(FPS), "-i", "frames_v2/f%05d.png", "-i", "voice.mp3", "-i", "bed.wav",
                     "-filter_complex", fc, "-map", "0:v", "-map", "[a]", "-t", str(DUR), "-c:v", "libx264", "-crf", "18", "-preset", "slow",
                     "-pix_fmt", "yuv420p", "-movflags", "+faststart", "-c:a", "aac", "-b:a", "192k", tmp], check=True)
     os.replace(tmp, out)

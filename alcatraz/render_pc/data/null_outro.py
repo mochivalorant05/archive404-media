@@ -1,7 +1,7 @@
 # Overlay Null popping in during the last ~1.8 s (easeOutBack + gentle bob), applied on the rendered PNG frames.
 from PIL import Image, ImageFilter
 import math, sys, os
-FR="frames60"; t0=float(sys.argv[1]) if len(sys.argv)>1 else 90.5; fps=int(sys.argv[2]) if len(sys.argv)>2 else 30
+FR="frames_v2"; t0=float(sys.argv[1]) if len(sys.argv)>1 else 90.5; fps=int(sys.argv[2]) if len(sys.argv)>2 else 30
 files=sorted(os.listdir(FR)); n=len(files)
 base=Image.open("null_cut.png"); W0=250
 def back(x,s=1.7): x-=1; return 1+x*x*((s+1)*x+s)

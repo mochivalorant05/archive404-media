@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 let _rs = 1; Math.random = () => { _rs = (_rs * 16807) % 2147483647; return (_rs - 1) / 2147483646; };
 import { Char } from './chars.js';
+import { Char3D } from './chars3d.js';
 import * as W from './world.js';
 import * as R from './rome.js';
 import { Post } from './post.js';
@@ -24,6 +25,7 @@ function shake(cam, amt, t) { cam.position.x += Math.sin(t * 61) * amt + Math.si
 function handheld(cam, amt, t) { cam.rotation.z += Math.sin(t * 1.3) * amt * 0.5; cam.rotation.x += Math.sin(t * 0.9 + 1) * amt * 0.4; cam.rotation.y += Math.sin(t * 0.7 + 2) * amt * 0.4; }
 function persp(fov = 55, near = 0.1, far = 30000) { return new THREE.PerspectiveCamera(fov, WIDTH / HEIGHT, near, far); }
 const chars = []; const AUTO = [];
+function mk3(par, o, pos, rotY = 0) { const c = new Char3D(o); c.group.position.copy(pos); c.group.rotation.y = rotY; par.add(c.group); chars.push(c); return c; }
 function mk(par, o, pos, rotY = 0) { const c = new Char(o); if (o.bust) c.ground = false; c.group.position.copy(pos); c.group.rotation.y = rotY; par.add(c.group); chars.push(c); return c; }
 const SHOTS = []; const shot = (anchor, build, lead = 0) => SHOTS.push({ anchor, build, lead });
 const CLOCKS = []; const clock = (anchor, text, lead = 0) => CLOCKS.push({ anchor, text, lead });
@@ -79,7 +81,7 @@ shot('your cell is', (S) => {
   const scene = nightRoom({ hemi: 0.5, fd: 0.02, expo: 1.08, warm: 0.12 }); const c = A.cell({ ceil: false, bulb: 2.4, front: false }); scene.add(c);
   const hall = new THREE.Mesh(new THREE.PlaneGeometry(6, 3), A.M.floor()); hall.rotation.x = -Math.PI / 2; hall.position.set(0, -0.01, 1.4); hall.userData.ground = true; scene.add(hall);
   const keyL = new THREE.SpotLight(0xd8e4ff, 18, 12, 0.7, 0.6, 1.4); keyL.position.set(0.5, 3.4, 2.8); keyL.target.position.set(0, 0, -1.3); keyL.castShadow = true; keyL.shadow.mapSize.set(2048, 2048); scene.add(keyL); scene.add(keyL.target);
-  const you = mk(scene, { ...YOU, mocap: 'idle', expr: 'worried' }, V(0.18, 0, -1.0), 0);
+  const you = mk3(scene, { ...YOU, mocap: 'idle', expr: 'worried' }, V(0.18, 0, -1.0), 0.3);
   const mw = measure(A.CW, '5 FT'); mw.rotation.x = -Math.PI / 2; mw.position.set(0, 0.02, -0.25); scene.add(mw); const md = measure(A.CD, '9 FT'); md.rotation.set(-Math.PI / 2, 0, Math.PI / 2); md.position.set(A.CW / 2 - 0.2, 0.02, -A.CD / 2); scene.add(md);
   const dust = new FX(scene, 90, 'dust', true); const cam = persp(44, 0.05, 60);
   return { scene, cam, hero: you, env: false, upd(lt, d) { motes(dust, [-0.7, 0.2, 0.7, 2.0, -2.6, 0.2], lt, 0.01);
@@ -164,10 +166,10 @@ shot('nobody escapes', (S) => {
 shot('so you dig', (S) => {
   const scene = nightRoom({ hemi: 0.3, fd: 0.03, expo: 1.15, warm: 0.1 }); const c = A.cell({ bulb: 0.0, front: true }); c.userData.bulb.visible = false; scene.add(c);
   const cand = W.candle(); cand.position.set(-0.1, 0, -A.CD + 0.55); scene.add(cand); const moon = new THREE.SpotLight(0x8aa6e0, 10, 10, 0.5, 0.6, 1.4); moon.position.set(0.6, 2.4, 2.5); moon.target.position.set(0.2, 0.3, -2.4); scene.add(moon); scene.add(moon.target);
-  const you = mk(scene, { ...YOU, mocap: 'kneel', mocapLoop: false, expr: 'serious' }, V(0.32, 0, -A.CD + 0.62), Math.PI);
+  const you = mk3(scene, { ...YOU, mocap: 'kneel', mocapLoop: false, expr: 'serious' }, V(-0.08, 0, -A.CD + 0.6), Math.PI * 0.85);
   const cam = persp(52, 0.05, 40);
   return { scene, cam, hero: you, env: false, upd(lt, d) { cand.userData.flame.scale.y = 2 + Math.sin(lt * 23) * 0.3; cand.userData.light.intensity = 3 + Math.sin(lt * 17) * 0.4;
-    camMove(cam, lt / d, V(-0.55, 1.35, 0.15), V(-0.45, 1.2, -0.25), V(0.25, 0.5, -A.CD + 0.3), V(0.28, 0.42, -A.CD + 0.2), 56, 52); } };
+    camMove(cam, lt / d, V(0.62, 1.45, -0.5), V(0.6, 1.3, -0.75), V(0.0, 0.5, -A.CD + 0.4), V(0.05, 0.45, -A.CD + 0.3), 56, 52); } };
 });
 
 // ============ 9. Every night, with a sharpened spoon, you scrape the concrete around your air vent. ============
@@ -175,18 +177,18 @@ shot('every night', (S) => {
   const scene = nightRoom({ hemi: 0.3, fd: 0.02, expo: 1.1, warm: 0.12 }); const c = A.cell({ bulb: 0, front: true }); c.userData.bulb.visible = false; scene.add(c);
   const cand = W.candle(); cand.position.set(-0.25, 0, -A.CD + 0.5); scene.add(cand); cand.userData.light.intensity = 1.2; const fill = new THREE.PointLight(0x9ab0e0, 1.2, 4, 1.5); fill.position.set(0.9, 0.9, -1.4); scene.add(fill);
   const vent = c.userData.vent; const vp = vent.getWorldPosition(new THREE.Vector3());
-  const you = mk(scene, { ...YOU, mocap: false, expr: 'serious', extras: ['inmateNo', 'sweat'], height: 1.75 }, V(vp.x + 0.38, -0.62, vp.z + 0.5), 0); you.ground = false;
+  const you = mk3(scene, { ...YOU, mocap: 'kneel', mocapLoop: false, mocapStart: -3, expr: 'serious', extras: ['inmateNo'], height: 1.75 }, V(vp.x - 0.3, 0, vp.z + 0.55), Math.PI * 0.82);
   const sp = A.spoon(); sp.scale.setScalar(1.7); scene.add(sp); let solves = 0; c.userData.table.forEach(m => m.visible = false);
   const cracks = new THREE.Group(); for (let i = 0; i < 4; i++) { const cr = new THREE.Mesh(new THREE.PlaneGeometry(0.3, 0.014), new THREE.MeshBasicMaterial({ color: 0x1a1612 })); cr.userData.noOutline = true; cr.position.set(vp.x + [-0.145, 0.145, 0, 0][i], vp.y + [0, 0, 0.112, -0.112][i], vp.z + 0.004); cr.rotation.z = i < 2 ? Math.PI / 2 : 0; cracks.add(cr); } scene.add(cracks);
   const dust = new FX(scene, 260, 'dust'); const cam = persp(46, 0.02, 30); let off = null;
   return { scene, cam, hero: null, post: { focus: 0.75 }, env: false, upd(lt, d) { cand.userData.flame.scale.y = 2 + Math.sin(lt * 23) * 0.3; cand.userData.light.intensity = 1.2 + Math.sin(lt * 17) * 0.15;
     const scr = Math.sin(lt * 9); const corner = Math.floor(lt / 1.15) % 4; const o = [[-0.14, 0.1], [0.14, 0.1], [0.14, -0.1], [-0.14, -0.1]][corner]; const along = corner % 2 ? V(0, 1, 0) : V(1, 0, 0);
-    const tip = V(vp.x + o[0], vp.y + o[1], vp.z + 0.01).addScaledVector(along, scr * 0.025); const hw = you.handW(0); const dir = (hw.y > 0 ? hw.clone().sub(tip) : V(0.4, 0.3, 0.8)).normalize();
-    sp.position.copy(tip).addScaledVector(dir, 0.06 * 1.7); sp.lookAt(sp.position.clone().add(dir));
-    you.set({ armsOverride: [[1.15 + scr * 0.06, -0.15], [0.4, -0.3]], expr: 'serious' });
+    const tip = V(vp.x + o[0], vp.y + o[1], vp.z + 0.01).addScaledVector(along, scr * 0.025); const dir = V(-0.1, 0.35, 0.93).normalize();
+    sp.position.copy(tip).addScaledVector(dir, 0.06 * 1.7); sp.lookAt(sp.position.clone().add(dir)); const grip = tip.clone().addScaledVector(dir, 0.3 * 1.7);
+    you.reach(1, null).reach(0, grip); you.set({ expr: 'serious', headPitch: 0.25 });
     const k = clamp01(lt / (d * 0.9)); cracks.children.forEach((cr, i) => { cr.scale.x = clamp01(k * 1.4 - i * 0.12); });
     bursts(dust, Array.from({ length: 10 }, (_, i) => ({ p: tip.clone(), t0: i * 0.45, n: 26, sp: 0.18, life: 1.4, size: 0.008, up: 0.3, g: 0.12, floor: 0.0 })), lt);
-    camMove(cam, lt / d, V(vp.x + 0.1, vp.y + 0.6, vp.z + 1.9), V(vp.x + 0.1, vp.y + 0.5, vp.z + 1.65), vp.clone().add(V(0.2, 0.3, 0.3)), vp.clone().add(V(0.18, 0.26, 0.3)), 50, 46); handheld(cam, 0.005, lt); } };
+    camMove(cam, lt / d, V(vp.x + 0.42, vp.y + 0.95, vp.z + 1.55), V(vp.x + 0.4, vp.y + 0.82, vp.z + 1.35), vp.clone().add(V(-0.12, 0.2, 0.25)), vp.clone().add(V(-0.1, 0.16, 0.2)), 50, 46); handheld(cam, 0.005, lt); } };
 });
 stamp('spoon', 'SHARPENED SPOON', 1.6, '#e8eef8', 560);
 
@@ -198,13 +200,13 @@ shot('you build a', (S) => {
   const soap = A.soapBar(); soap.position.set(0.12, 0.815, -1.08); scene.add(soap); const tp = A.tpRoll(); tp.position.set(0.48, 0.85, -1.05); scene.add(tp); const pot = A.paintPot(); pot.position.set(0.12, 0.83, -1.32); scene.add(pot);
   const head = A.dummyHead(); head.position.set(0.3, 0.9, -1.2); scene.add(head); head.userData.hair.visible = false; const key = new THREE.SpotLight(0xffe4c0, 9, 4, 0.6, 0.5, 1.4); key.position.set(0.9, 1.5, -0.4); key.target.position.set(0.3, 0.85, -1.2); key.castShadow = true; scene.add(key); scene.add(key.target);
   const scraps = []; for (let i = 0; i < 9; i++) { const s = new THREE.Mesh(new THREE.PlaneGeometry(0.06, 0.05), W.std(0xf8f6f0, { side: THREE.DoubleSide })); s.position.set(0.2 + (i % 3) * 0.08, 0.802, -1.0 - Math.floor(i / 3) * 0.05); s.rotation.set(-Math.PI / 2, 0, i); scene.add(s); scraps.push(s); }
-  const you = mk(scene, { ...YOU, pose: 'stand', mocap: false, expr: 'serious', noBill: false }, V(-0.32, 0, -1.15), Math.PI / 2);
+  const you = mk3(scene, { ...YOU, pose: 'stand', mocap: 'idle', expr: 'serious' }, V(-0.22, 0, -1.2), Math.PI / 2);
   const cam = persp(44, 0.02, 30); const white = new THREE.Color(0xf6f4ee), skin = new THREE.Color(0xe4b490);
   return { scene, cam, hero: null, post: { focus: 0.62 }, env: false, upd(lt, d) { cand.userData.flame.scale.y = 2 + Math.sin(lt * 23) * 0.3;
     const k = AB(clamp01((lt - 0.2) / 1.6)); head.scale.set(lerp(0.45, 1, k), lerp(0.35, 1, k), lerp(0.45, 1, k)); head.rotation.y = 0.5 + Math.sin(lt * 0.8) * 0.35; const kp = clamp01((lt - 1.9) / 1.0); head.userData.skin.color.copy(white).lerp(skin, kp);
     scraps.forEach((s, i) => s.visible = lt < 0.4 + i * 0.18); soap.scale.setScalar(lerp(1, 0.4, k));
-    you.set({ armsOverride: [[1.5 + Math.sin(lt * 6) * 0.15, -0.5], [1.35 + Math.sin(lt * 6 + 2) * 0.15, -0.4]], expr: kp > 0.5 ? 'smug' : 'serious' });
-    camMove(cam, lt / d, V(0.6, 1.45, -0.3), V(0.55, 1.32, -0.45), V(0.22, 0.86, -1.18), V(0.25, 0.88, -1.2), 46, 42); } };
+    const hr = 0.11 * lerp(0.45, 1, k); you.reach(0, head.position.clone().add(V(-0.02 + Math.sin(lt * 6) * 0.015, 0.02, hr + 0.01))).reach(1, head.position.clone().add(V(-0.02, 0.03 + Math.sin(lt * 6 + 2) * 0.015, -hr - 0.01))); you.set({ expr: kp > 0.5 ? 'smug' : 'serious', headPitch: 0.35 });
+    camMove(cam, lt / d, V(0.62, 1.5, -0.25), V(0.55, 1.38, -0.4), V(0.12, 0.95, -1.2), V(0.15, 0.95, -1.2), 50, 46); } };
 });
 
 // ============ 11. ...and real hair from the barbershop. ============
@@ -215,14 +217,15 @@ shot('and real hair', (S) => {
   const win = new THREE.Mesh(new THREE.PlaneGeometry(1.4, 1.6), new THREE.MeshBasicMaterial({ color: 0xdfe8f0 })); win.position.set(-1, 1.9, -2.38); scene.add(win); for (let k = -3; k <= 3; k++) { const b = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.02, 1.6, 6), A.M.ironDk()); b.position.set(-1 + k * 0.2, 1.9, -2.35); scene.add(b); }
   const ch = A.barberChair(); ch.position.set(0.2, 0, -0.9); scene.add(ch); const mirror = new THREE.Mesh(new THREE.PlaneGeometry(1.2, 0.9), W.std(0xb8c8d8, { metalness: 0.9, roughness: 0.1 })); mirror.position.set(0.2, 1.6, -2.38); scene.add(mirror);
   const hairF = A.hairClumps(600, [2.4, 2.0]); hairF.position.set(0.2, 0, -0.6); scene.add(hairF);
-  const sitter = mk(scene, { ...INM(1), pose: 'sit', mocap: false, arms: 'down', expr: 'neutral', extras: ['inmateNo', 'apron'] }, V(0.2, 0.55, -0.92), 0); sitter.ground = false;
-  const barber = mk(scene, { ...INM(3), mocap: 'idle', expr: 'neutral', extras: ['inmateNo', 'apron'] }, V(0.85, 0, -0.95), -0.6);
-  const you = mk(scene, { ...YOU, prop: 'brush', mocap: 'crouch', expr: 'smug' }, V(-0.75, 0, 0.05), 0.4);
+  const sitter = mk3(scene, { ...INM(1), pose: 'sit', mocap: false, expr: 'neutral', extras: ['inmateNo', 'apron'], armsOverride: [[0.5, -1.2], [0.5, -1.2]], armPlane: 0.8 }, V(0.2, 0.18, -0.95), 0); sitter.ground = false;
+  const barber = mk3(scene, { ...INM(3), mocap: 'idle', expr: 'neutral', extras: ['inmateNo'] }, V(0.75, 0, -1.05), -1.2);
+  const you = mk3(scene, { ...YOU, mocap: 'crouch', mocapLoop: false, expr: 'smug' }, V(-0.55, 0, -0.15), 0.5);
+  const comb = new THREE.Mesh(new THREE.BoxGeometry(0.012, 0.03, 0.12), W.std(0x1a1a1a)); scene.add(comb);
   const fall_ = new FX(scene, 80, 'dot'); const pocket = A.hairClumps(18, [0.2, 0.2]); scene.add(pocket); const cam = persp(48, 0.05, 40);
-  return { scene, cam, hero: you, env: false, upd(lt, d) { barber.set({ armsOverride: [[2.1 + Math.sin(lt * 14) * 0.12, -1.2], [0.6, -0.3]] });
+  return { scene, cam, hero: you, env: false, upd(lt, d) { const hd = sitter.head.getWorldPosition(new THREE.Vector3()); barber.reach(0, hd.clone().add(V(0.05 + Math.sin(lt * 14) * 0.03, 0.2, 0.05))).reach(1, hd.clone().add(V(0.12, 0.1, -0.08))); comb.position.copy(barber.handW(0)); barber.set({ headPitch: 0.3 });
     for (let i = 0; i < fall_.n; i++) { const R_ = fall_.R[i]; const ph = (lt * 0.7 + R_[0]) % 1; fall_.set(i, 0.2 + (R_[1] - 0.5) * 0.5, 1.75 - ph * 1.7, -0.9 + (R_[2] - 0.5) * 0.4, 0.8, 0.015 + R_[3] * 0.015); } fall_.commit();
-    const kg = clamp01((lt - 1.1) / 0.6); const hw = you.handW(1); pocket.position.copy(lt < 1.1 ? V(-0.45, 0.01, -0.25) : hw.clone().add(V(0, -0.05, 0))); pocket.scale.setScalar(1 - kg * 0.2); you.set({ mocap: lt < 1.0 ? 'crouch' : false, armsOverride: lt < 1.0 ? undefined : [[0.3, -0.2], [lerp(0.8, 1.6, kg), -1.3]], expr: lt > 1.2 ? 'smug' : 'serious' });
-    camMove(cam, lt / d, V(-1.9, 1.35, 2.4), V(-1.6, 1.25, 2.0), V(0.0, 0.55, -0.5), V(-0.2, 0.6, -0.4), 52, 50); } };
+    const kg = clamp01((lt - 1.1) / 0.6); const pile = V(-0.35, 0.02, -0.35); you.reach(1, lt < 1.1 ? pile : pile.clone().lerp(V(-0.5, 0.75, -0.05), kg)); const hw = you.handW(1); pocket.position.copy(lt < 0.6 ? pile : hw.clone().add(V(0, -0.02, 0))); pocket.scale.setScalar(1 - kg * 0.2); you.set({ expr: lt > 1.2 ? 'smug' : 'serious', headPitch: lt < 1.1 ? 0.5 : 0 });
+    camMove(cam, lt / d, V(-1.3, 2.3, 2.2), V(-1.1, 2.0, 1.8), V(0.0, 0.5, -0.6), V(-0.1, 0.55, -0.5), 50, 48); } };
 });
 
 // ============ 12. You glue 50 raincoats into a raft. — on top of the cellblock, under the roof ============
@@ -232,10 +235,10 @@ shot('you glue', (S) => {
   const beam = new THREE.Mesh(new THREE.BoxGeometry(0.4, 0.5, 10), A.M.concrete()); beam.position.set(-1.2, 3.4, 0); scene.add(beam); const beam2 = beam.clone(); beam2.position.x = 2.4; scene.add(beam2);
   const lamp = W.candle(); lamp.position.set(1.0, 0, -0.6); scene.add(lamp); const bulb = new THREE.PointLight(0xffe2c0, 4, 9, 1.4); bulb.position.set(0.4, 2.0, 0.3); scene.add(bulb);
   const raft = A.raft(); raft.position.set(0.2, 0, -0.2); scene.add(raft); const coats = []; for (let i = 0; i < 14; i++) { const r = A.raincoat([0x8a8240, 0x6a6430, 0x9a9050][i % 3]); r.rotation.set(-Math.PI / 2, 0, i * 1.7); r.position.set(-2.2 + (i % 5) * 0.9 + (i > 9 ? 0.3 : 0), 0.01 + i * 0.002, 1.3 - Math.floor(i / 5) * 0.4 - (i % 2) * 2.8); r.scale.setScalar(0.7); scene.add(r); coats.push(r); }
-  const you = mk(scene, { ...YOU, mocap: 'kneel', expr: 'serious' }, V(-1.0, 0, -0.1), Math.PI / 2); const john = mk(scene, { ...JOHN, mocap: 'kneel', expr: 'smug' }, V(1.4, 0, -0.3), -Math.PI / 2);
+  const you = mk3(scene, { ...YOU, mocap: 'kneel', mocapLoop: false, mocapStart: -3, expr: 'serious' }, V(-1.1, 0, -0.15), Math.PI / 2); const john = mk3(scene, { ...JOHN, mocap: 'kneel', mocapLoop: false, mocapStart: -3, expr: 'smug' }, V(1.5, 0, -0.3), -Math.PI / 2);
   const cam = persp(48, 0.05, 40); const dust = new FX(scene, 80, 'dust', true);
   return { scene, cam, hero: raft, env: false, post: { focus: 3.0 }, upd(lt, d) { motes(dust, [-2, 0.2, 2, 2.6, -2, 1], lt, 0.01); const k = AB(clamp01((lt - 0.3) / 2.2)); raft.userData.tube.scale.set(1.0, lerp(0.15, 0.5, k), lerp(0.12, 1, k)); raft.scale.set(lerp(0.85, 1, k), 1, lerp(0.8, 1, k));
-    you.set({ mocap: false, pose: 'stand', armsOverride: [[1.2 + Math.sin(lt * 7) * 0.1, -0.6], [1.0, -0.4]] }); you.group.position.y = -0.45; you.ground = false; john.set({ mocap: false, pose: 'stand', armsOverride: [[1.0, -0.4], [1.3 + Math.sin(lt * 6 + 1) * 0.12, -0.7]] }); john.group.position.y = -0.45; john.ground = false;
+    const ty = raft.userData.tube.scale.y * 0.4 + 0.05; you.reach(0, V(-0.72, ty, -0.15 + 0.25 + Math.sin(lt * 7) * 0.05)).reach(1, V(-0.72, ty, -0.15 - 0.25)); john.reach(0, V(1.12, ty, -0.3 - 0.25 + Math.sin(lt * 6 + 1) * 0.05)).reach(1, V(1.12, ty, -0.3 + 0.25)); you.set({ headPitch: 0.4 }); john.set({ headPitch: 0.4 });
     coats.forEach((r, i) => r.visible = lt < 2.6 - i * 0.12 || i > 9);
     camMove(cam, lt / d, V(0.6, 4.4, 5.6), V(0.45, 3.9, 4.9), V(0.2, 0.2, -0.4), V(0.2, 0.3, -0.4), 50, 48); } };
 });
@@ -266,9 +269,9 @@ shot('you leave the', (S) => {
 shot('climb the vents', (S) => {
   const scene = nightRoom({ hemi: 0.22, fd: 0.05, expo: 1.2, warm: -0.05 }); const sh = A.shaft({ h: 9 }); scene.add(sh); const hat = sh.userData.hatch;
   const moonL = new THREE.SpotLight(0x9ab8ff, 30, 16, 0.5, 0.5, 1.2); moonL.position.set(0.5, 13, 0.6); moonL.target.position.set(0, 0, 0); scene.add(moonL); scene.add(moonL.target); const warm = new THREE.PointLight(0xffb070, 2.5, 8, 1.6); warm.position.set(0, 1.0, 0.2); scene.add(warm);
-  const cl = [YOU, JOHN, CLAR].map((o, i) => { const c = mk(scene, { ...o, mocap: 'climb', mocapSpeed: 0.9, mocapStart: i * 0.4, expr: i ? 'worried' : 'serious', height: 1.7 }, V(0, 0, -0.18), 0); c.ground = false; return c; });
+  const cl = [YOU, JOHN, CLAR].map((o, i) => { const c = mk3(scene, { ...o, mocap: 'climb', mocapSpeed: 0.9, mocapStart: i * 0.4, expr: i ? 'worried' : 'serious', height: 1.7, headPitch: -0.5 }, V(0, 0, -0.12), Math.PI); c.ground = false; return c; });
   const cam = persp(60, 0.05, 40);
-  return { scene, cam, hero: cl[0], env: false, upd(lt, d) { cl.forEach((c, i) => { c.group.position.y = 5.2 + lt * 0.9 - i * 1.7; });
+  return { scene, cam, hero: cl[0], env: false, upd(lt, d) { cl.forEach((c, i) => { const Y = 5.2 + lt * 0.9 - i * 1.7; c.group.position.y = Y; [0, 1].forEach(j => { const ry = Math.floor((Y + 1.0 + j * 0.21 - 0.4) / 0.42) * 0.42 + 0.4 + 0.42; c.reach(j, V((j ? 1 : -1) * 0.16, ry, -0.31)); }); });
     const ko = AB(clamp01((lt - 0.9) / 0.6)); hat.rotation.z = ko * 1.9;
     camMove(cam, lt / d, V(0.1, 8.85, 0.36), V(0.08, 8.9, 0.34), V(0, 5.8, -0.15), V(0, 6.8, -0.15), 58, 56); } };
 });
@@ -277,12 +280,12 @@ shot('climb the vents', (S) => {
 shot('and paddle', (S) => {
   const { scene, sun } = bayScene('bayNight', { sunDir: V(0.5, 0.3, -0.6), expo: 1.2, fd: 0.004, amb: 0.4 });
   const sea = seaGroup(scene, 0x06101c, 0.12, 9000, { env: 0.3, hz: 0x0a1424 }); const isl = A.island({ s: 1 }); isl.position.set(20, 0, -150); isl.rotation.y = 0.2; scene.add(isl); E.stars(scene, 1800); const sf = A.skyline({ s: 1.4, n: 120 }); sf.position.set(-300, -2, -2300); scene.add(sf);
-  const raft = A.raft(); scene.add(raft); const men = [YOU, JOHN, CLAR].map((o, i) => { const c = mk(scene, { ...o, pose: 'sit', mocap: false, expr: i ? 'scared' : 'serious', extras: ['inmateNo', 'shiver'], height: 1.7 }, V(0, 0, 0), 0); c.ground = false; return c; });
+  const raft = A.raft(); scene.add(raft); const men = [YOU, JOHN, CLAR].map((o, i) => { const c = mk3(scene, { ...o, pose: 'sit', sitFloor: true, mocap: false, expr: i ? 'scared' : 'serious', extras: ['inmateNo', 'shiver'], height: 1.7 }, V(0, 0, 0), i === 2 ? Math.PI * 0.9 : 0); c.ground = false; return c; });
   const pads = [0, 1].map(() => { const p = A.paddle(); scene.add(p); return p; }); const moonL = new THREE.DirectionalLight(0x9ab4ff, 1.2); moonL.position.set(30, 40, -20); scene.add(moonL);
   const fog = new FX(scene, 160, 'steam'); const splash = new FX(scene, 120, 'steam'); const cam = persp(48, 0.1, 30000); const towers = []; isl.traverse(o => { if (o.userData.search) towers.push(o); });
   return { scene, cam, hero: men[0], env: true, envI: 0.3, upd(lt, d) { sea.update(lt + 20); const z = -lt * 0.8; const bob = Math.sin(lt * 1.6) * 0.05; raft.position.set(0, bob + 0.1, z); raft.rotation.set(Math.sin(lt * 1.3) * 0.05, 0.15, Math.sin(lt * 1.1) * 0.06);
-    men.forEach((m, i) => { const off = [V(0.42, 0, 0.0), V(-0.4, 0, 0.12), V(0.0, 0, -0.18)][i]; m.group.position.set(off.x, raft.position.y + 0.08, z + off.z); const st = Math.sin(lt * 4.2 + i * 1.5); m.set({ armsOverride: i < 2 ? [[1.1 + st * 0.35, -0.6], [1.0 + st * 0.35, -0.5]] : [[0.5, -0.2], [0.5, -0.2]] }); });
-    pads.forEach((p, i) => { const hw = men[i].handW(i ? 0 : 1); p.position.copy(hw); p.rotation.set(0.9 + Math.sin(lt * 4.2 + i * 1.5) * 0.5, (i ? -1 : 1) * 0.6, 0); });
+    men.forEach((m, i) => { const off = [V(0.42, 0, 0.1), V(-0.4, 0, 0.2), V(0.0, 0, -0.3)][i]; m.group.position.set(off.x, raft.position.y + 0.05, z + off.z); if (i === 2) m.set({ armsOverride: [[0.6, -1.4], [0.6, -1.4]], armPlane: 0.9 }); });
+    pads.forEach((p, i) => { const m = men[i]; const sd = i ? -1 : 1; const st = Math.sin(lt * 4.2 + i * 1.5); const mp = m.group.position; const top = mp.clone().add(V(sd * 0.12, 0.85, 0.22 + st * 0.18)); const blade = mp.clone().add(V(sd * 0.75, -0.25, 0.1 - st * 0.45)); const dir = blade.clone().sub(top).normalize(); p.position.copy(top).addScaledVector(dir, 0.55); p.lookAt(blade); m.reach(i ? 1 : 0, top.clone().addScaledVector(dir, 0.05)).reach(i ? 0 : 1, top.clone().addScaledVector(dir, 0.42)); });
     for (let i = 0; i < splash.n; i++) { const R_ = splash.R[i]; const ph = (lt * 1.4 + R_[0]) % 1; splash.set(i, (R_[1] < 0.5 ? 1.0 : -1.0) + (R_[2] - 0.5) * 0.4, 0.05 + ph * 0.3, z + (R_[3] - 0.5) * 0.6, 0.25 * (1 - ph), 0.15 + ph * 0.3); } splash.commit();
     towers.forEach((t, i) => { t.userData.search.rotation.y = Math.sin(lt * 0.7 + i) * 1.4; t.userData.search.rotation.x = 0.25; }); isl.userData.beam.rotation.y = lt * 1.1;
     E.driftFX(fog, V(0, 1, z - 10), lt, { w: 40, d: 30, size: 6, alpha: 0.08, wind: V(1, 0.1, 0.4) }); sun.follow(V(0, 0, z));
@@ -294,13 +297,14 @@ shot('next morning', (S) => {
   const scene = new THREE.Scene(); scene.background = new THREE.Color(0x2a3240); scene.fog = new THREE.FogExp2(0x3a4250, 0.03); scene.userData.expo = 1.02; scene.userData.sat = 1.05; scene.userData.warm = 0.02;
   scene.add(new THREE.HemisphereLight(0xe8eef8, 0x3a3a40, 0.85)); const c = A.cell({ bulb: 2.4, front: false }); scene.add(c); const sun_ = new THREE.SpotLight(0xffe8c8, 20, 10, 0.6, 0.6, 1.3); sun_.position.set(-1.5, 3.2, 2.4); sun_.target.position.set(-0.3, 0.4, -1.4); sun_.castShadow = true; scene.add(sun_); scene.add(sun_.target);
   const alarm = new THREE.PointLight(0xff2a1a, 0, 8, 1.4); alarm.position.set(0.5, 2.0, 0.6); scene.add(alarm);
-  const bed = c.userData.bed; const bw = bed.getWorldPosition(new THREE.Vector3()); const head = A.dummyHead(); scene.add(head); bed.userData.blanket.visible = false; const hinge = new THREE.Group(); hinge.position.set(bw.x, 0.64, bw.z + 0.95); scene.add(hinge); const bl = new THREE.Mesh(new THREE.BoxGeometry(0.78, 0.04, 1.35, 6, 1, 10), mat('cloth', 0x9aa0a8, { bump: 2 })); bl.position.z = -0.675; bl.castShadow = bl.receiveShadow = true; hinge.add(bl); const bump = new THREE.Mesh(new THREE.CapsuleGeometry(0.16, 0.9, 6, 12), mat('cloth', 0x6a7078, { bump: 2 })); bump.rotation.x = Math.PI / 2; bump.scale.set(1.2, 1, 0.7); scene.add(bump);
-  const guard = mk(scene, { ...GUARD, mocap: false, expr: 'serious' }, V(bw.x + 0.62, 0, bw.z + 0.15), -Math.PI / 2); const g2 = mk(scene, { ...GUARD, hatColor: '#30384a', seed: 12, pose: 'run', expr: 'shock' }, V(1.6, 0, 1.4), Math.PI);
+  const bed = c.userData.bed; const bw = bed.getWorldPosition(new THREE.Vector3()); const head = A.dummyHead(); scene.add(head); bed.userData.blanket.visible = false; const hinge = new THREE.Group(); hinge.position.set(bw.x, 0.64, bw.z + 0.95); scene.add(hinge); const bl = new THREE.Mesh(new THREE.BoxGeometry(0.78, 0.04, 1.35, 6, 1, 10), mat('cloth', 0x6a7484, { bump: 2 })); bl.position.z = -0.675; bl.castShadow = bl.receiveShadow = true; hinge.add(bl); const bump = new THREE.Mesh(new THREE.CapsuleGeometry(0.16, 0.9, 6, 12), mat('cloth', 0x6a7078, { bump: 2 })); bump.rotation.x = Math.PI / 2; bump.scale.set(1.2, 1, 0.7); scene.add(bump);
+  const guard = mk3(scene, { ...GUARD, mocap: 'idle', expr: 'serious' }, V(bw.x + 0.6, 0, bw.z - 0.05), -Math.PI / 2); const g2 = mk3(scene, { ...GUARD, hatColor: '#30384a', seed: 12, pose: 'run', expr: 'shock' }, V(1.6, 0, 1.4), -Math.PI / 2);
   const cam = persp(46, 0.05, 40); const tH = Math.max(1.4, wt('heads', S.t) - S.t - 0.4);
   return { scene, cam, hero: guard, env: false, upd(lt, d) { const kl = AB(clamp01((lt - 0.5) / 0.6)); const hp = V(bw.x, 0.68, bw.z - 0.68);
     const kr = clamp01((lt - tH) / 0.5); if (kr <= 0) { head.position.copy(hp); head.rotation.set(-0.7, 0.4, 0.2); } else { const t = kr; head.position.set(hp.x + t * 0.55, Math.max(0.1, hp.y + 0.15 * Math.sin(t * Math.PI) - t * t * 0.62), hp.z + t * 0.2); head.rotation.set(-0.7 + t * 4, 0.4, 0.2 + t * 3); }
     hinge.rotation.x = kl * 2.3; bump.position.set(bw.x, 0.6, bw.z + 0.2); bump.scale.set(1.15, 1, 0.6);
-    guard.set({ armsOverride: [[lerp(0.6, 2.1, kl), -0.6], [lerp(0.5, 1.7, kl), -0.5]], expr: lt > tH ? 'shock' : (kl > 0.6 ? 'worried' : 'serious') }); g2.group.position.set(1.6 - Math.max(0, lt - tH) * 2.4, 0, 1.4); g2.set({ pose: lt > tH ? 'run' : 'stand' }); g2.group.rotation.y = Math.PI / 2;
+    hinge.updateMatrixWorld(true); const grabK = clamp01((lt - 0.2) / 0.3); const c1 = hinge.localToWorld(V(0.34, 0.03, -1.28)), c2 = hinge.localToWorld(V(0.34, 0.03, -0.95)); guard.reach(0, grabK > 0 ? c1 : null).reach(1, grabK > 0 ? c2 : null); guard.set({ lean: 0.35 * (1 - kl * 0.6), expr: lt > tH ? 'shock' : (kl > 0.6 ? 'worried' : 'serious'), headPitch: 0.35 }); if (lt > tH) guard.reach(0, null).reach(1, null);
+    g2.group.position.set(1.6 - Math.max(0, lt - tH) * 2.4, 0, 1.4); g2.set({ pose: lt > tH ? 'run' : 'stand' });
     alarm.intensity = lt > tH + 0.2 ? 6 * (0.5 + 0.5 * Math.sin(lt * 9)) : 0; scene.userData.warm = lt > tH + 0.2 ? 0.25 : 0.02;
     camMove(cam, lt / d, V(1.0, 1.4, 1.5), V(0.75, 1.15, 1.2), V(bw.x + 0.1, 0.8, bw.z - 0.3), V(bw.x + 0.2, 0.55, bw.z - 0.4), 50, 46); if (lt > tH && lt < tH + 0.3) shake(cam, 0.008, lt); } };
 });
@@ -375,7 +379,7 @@ function renderSub(t, i, jx, jy) {
   const pp = inst.post || {}; let focus = pp.focus; if (focus == null && inst.hero) { const p = inst.hero.group.getWorldPosition(new THREE.Vector3()); p.y += inst.hero.o.height * 0.6; focus = Math.max(0.3, -p.applyMatrix4(inst.cam.matrixWorldInverse).z); }
   if (focus == null) focus = pp.far ?? 80;
   if (jx || jy) inst.cam.setViewOffset(GLW, GLH, jx, jy, GLW, GLH); else inst.cam.clearViewOffset();
-  POST.render(inst.scene, inst.cam, { expo: inst.scene.userData.expo, sat: inst.scene.userData.sat, warm: inst.scene.userData.warm, ...pp, focus, time: t }); gl.getContext().finish(); const a2 = performance.now(); PROF.upd += a1 - a0; PROF.render += a2 - a1; inst.cam.clearViewOffset();
+  POST.render(inst.scene, inst.cam, { lift: inst.scene.userData.lift ?? 0.035, vig: inst.scene.userData.vig ?? 0.22, expo: inst.scene.userData.expo * (inst.scene.userData.bright ?? 1.5), sat: inst.scene.userData.sat, warm: inst.scene.userData.warm, ...pp, focus, time: t }); gl.getContext().finish(); const a2 = performance.now(); PROF.upd += a1 - a0; PROF.render += a2 - a1; inst.cam.clearViewOffset();
 }
 window.renderFrame = (t) => {
   let i = SHOTS.findIndex((s, k) => t >= s.t && t < s.end); if (i < 0) i = SHOTS.length - 1; if (i !== cur) activate(i);

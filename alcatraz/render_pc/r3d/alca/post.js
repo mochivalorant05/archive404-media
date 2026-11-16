@@ -62,7 +62,7 @@ export class Post {
   render(scene, cam, o = {}) {
     const gl = this.gl, U = this.U, C = this.mComp.uniforms;
     U.cn.value = cam.near; U.cf.value = cam.far; U.focus.value = o.focus ?? 5; U.aper.value = o.aper ?? 22 * Math.min(1.2, Math.max(0.22, 2.6 / (o.focus ?? 5))); U.maxC.value = o.maxC ?? 28;
-    C.expo.value = o.expo ?? 1.0; C.bloom.value = o.bloom ?? 0.12; C.sat.value = o.sat ?? 1.18; C.con.value = o.con ?? 1.14; C.vig.value = o.vig ?? 0.32; C.warm.value = o.warm ?? 0.4; C.time.value = (o.time ?? 0) % 100;
+    C.expo.value = o.expo ?? 1.0; if (o.lift != null && C.lift) C.lift.value.set(o.lift, o.lift + 0.008, o.lift + 0.025); C.bloom.value = o.bloom ?? 0.12; C.sat.value = o.sat ?? 1.18; C.con.value = o.con ?? 1.14; C.vig.value = o.vig ?? 0.32; C.warm.value = o.warm ?? 0.4; C.time.value = (o.time ?? 0) % 100;
     gl.setRenderTarget(this.rt); gl.render(scene, cam);
     this.mPre.uniforms.tCol.value = this.rt.texture; this.pass(this.mPre, this.half);
     this.pass(this.mDof, this.dof);
